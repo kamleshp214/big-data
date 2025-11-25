@@ -3,108 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS-702: Big Data Analytics Detailed Study Guide</title>
+    <title>CS-702: Big Data Analytics Comprehensive Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        /* Mobile-first optimizations */
+        body { font-family: system-ui, -apple-system, sans-serif; }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f3f4f6; }
+        ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+        /* ASCII Art Container */
         .ascii-art {
             font-family: 'Courier New', Courier, monospace;
             white-space: pre;
             overflow-x: auto;
-            background-color: #1f2937;
-            color: #e5e7eb;
+            background-color: #1f2937; /* Dark gray */
+            color: #e5e7eb; /* Light gray text */
             padding: 1rem;
             border-radius: 0.5rem;
-            font-size: 0.8rem;
-            line-height: 1.2;
+            font-size: 0.75rem;
+            line-height: 1.25;
             border: 1px solid #374151;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
         }
-        .section-header { color: #1e40af; font-size: 1.5rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; }
-        .sub-header { color: #374151; font-size: 1.2rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-        .content-text { color: #4b5563; line-height: 1.7; margin-bottom: 1rem; font-size: 1rem; }
-        ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; color: #4b5563; }
-        li { margin-bottom: 0.5rem; }
-        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
-        th, td { border: 1px solid #d1d5db; padding: 0.75rem; text-align: left; }
-        th { background-color: #f3f4f6; font-weight: 700; color: #111827; }
-        code { background-color: #f3f4f6; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-family: monospace; color: #dc2626; font-size: 0.9em; }
-        .highlight-box { background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+
+        /* Content Typography */
+        .section-title { 
+            color: #1e3a8a; 
+            font-size: 1.75rem; 
+            font-weight: 800; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.2;
+        }
+        .section-header { 
+            color: #1e40af; 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1rem; 
+            border-bottom: 2px solid #e5e7eb; 
+            padding-bottom: 0.5rem; 
+        }
+        .sub-header { 
+            color: #374151; 
+            font-size: 1.15rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.5rem; 
+        }
+        .content-text { 
+            color: #4b5563; 
+            line-height: 1.75; 
+            margin-bottom: 1rem; 
+            font-size: 1rem; 
+        }
+        
+        /* Lists */
+        ul, ol { margin-left: 1.25rem; margin-bottom: 1.25rem; color: #4b5563; }
+        li { margin-bottom: 0.5rem; padding-left: 0.25rem; }
+        
+        /* Tables - Mobile Responsive Wrapper */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { border: 1px solid #d1d5db; padding: 0.875rem; text-align: left; }
+        th { background-color: #f3f4f6; font-weight: 700; color: #111827; font-size: 0.9rem; }
+        td { font-size: 0.9rem; vertical-align: top; }
+        tr:nth-child(even) { background-color: #f9fafb; }
+
+        /* Code Blocks */
+        code { 
+            background-color: #f3f4f6; 
+            padding: 0.2rem 0.4rem; 
+            border-radius: 0.25rem; 
+            font-family: monospace; 
+            color: #dc2626; 
+            font-size: 0.9em; 
+        }
+        
+        /* Highlight Box */
+        .highlight-box { 
+            background-color: #eff6ff; 
+            border-left: 4px solid #3b82f6; 
+            padding: 1.25rem; 
+            margin: 1.5rem 0; 
+            border-radius: 0 0.5rem 0.5rem 0; 
+        }
     </style>
 </head>
-<body class="bg-gray-100 h-screen flex flex-col md:flex-row overflow-hidden">
+<body class="bg-gray-50 h-screen flex flex-col md:flex-row overflow-hidden text-gray-800">
 
-    <!-- Header -->
-    <div class="md:hidden bg-blue-900 text-white p-4 flex justify-between items-center z-20 shadow-md">
-        <h1 class="font-bold text-lg">CS-702 Detailed Guide</h1>
-        <button id="menuBtn" class="focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    <!-- Mobile Header -->
+    <div class="md:hidden bg-blue-900 text-white p-4 flex justify-between items-center z-30 shadow-lg">
+        <div>
+            <h1 class="font-bold text-lg leading-tight">CS-702 Exam Prep</h1>
+            <p class="text-xs text-blue-200">Big Data Analytics</p>
+        </div>
+        <button id="menuBtn" class="focus:outline-none p-1 rounded hover:bg-blue-800 transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
     </div>
 
-    <!-- Sidebar -->
-    <aside id="sidebar" class="transform -translate-x-full md:translate-x-0 transition-transform duration-300 absolute md:relative z-10 w-80 bg-white shadow-lg h-full flex flex-col border-r border-gray-200">
-        <div class="p-6 bg-blue-900 text-white hidden md:block">
-            <h1 class="text-2xl font-bold">CS-702</h1>
-            <p class="text-blue-200 text-sm mt-1">Detailed Exam Notes</p>
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="transform -translate-x-full md:translate-x-0 transition-transform duration-300 absolute md:relative z-20 w-full md:w-80 bg-white shadow-xl h-full flex flex-col border-r border-gray-200">
+        <div class="p-6 bg-blue-900 text-white hidden md:block flex-shrink-0">
+            <h1 class="text-2xl font-bold tracking-wide">CS-702</h1>
+            <p class="text-blue-200 text-sm mt-1 font-medium">Detailed Study Material</p>
         </div>
-        <nav class="flex-1 overflow-y-auto py-4" id="navContent"></nav>
+        
+        <div class="md:hidden p-4 bg-gray-100 border-b flex justify-between items-center">
+            <span class="font-bold text-gray-700">Navigate Units</span>
+            <button id="closeBtn" class="text-gray-500 hover:text-gray-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4 px-2" id="navContent">
+            <!-- Nav items injected via JS -->
+        </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 h-full overflow-y-auto relative scroll-smooth bg-white" id="mainScroll">
-        <div class="max-w-5xl mx-auto p-6 md:p-12">
+    <!-- Main Content Area -->
+    <main class="flex-1 h-full overflow-y-auto relative scroll-smooth bg-white w-full" id="mainScroll">
+        <div class="max-w-4xl mx-auto p-5 md:p-12 pb-20">
             <div id="contentArea">
-                <div class="text-center mt-20">
-                    <h2 class="text-3xl font-bold text-gray-800">Select a Question</h2>
-                    <p class="text-gray-500 mt-2">Use the sidebar to view detailed answers for Units I-V.</p>
+                <!-- Intro State -->
+                <div class="flex flex-col items-center justify-center h-64 mt-20 text-center">
+                    <div class="bg-blue-100 p-4 rounded-full mb-4">
+                        <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Welcome to CS-702 Prep</h2>
+                    <p class="text-gray-500 mt-3 max-w-md">Select a question from the sidebar to view detailed notes, diagrams, and explanations.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <div id="overlay" class="fixed inset-0 bg-black opacity-50 z-0 hidden md:hidden"></div>
+    <!-- Overlay for mobile -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 z-10 hidden md:hidden backdrop-blur-sm"></div>
 
     <script>
+        // Comprehensive Data Store
         const questions = [
             // --- UNIT I ---
             {
                 id: "q1", unit: "Unit I", title: "1. V's, Characteristics & Challenges",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q1: V's, Characteristics & Challenges of Big Data</h1>
+                    <h1 class="section-title">Q1: V's, Characteristics & Challenges of Big Data</h1>
                     
-                    <h2 class="section-header">1. Introduction</h2>
-                    <p class="content-text">Big Data refers to datasets whose size, complexity, and rate of growth exceed the capability of traditional database software tools to capture, store, manage, and analyze within a reasonable timeframe. It represents a paradigm shift from structured, relational data to massive, unstructured, and real-time data streams used for decision-making.</p>
+                    <h2 class="section-header">1. Introduction to Big Data</h2>
+                    <p class="content-text">Big Data isn't just "a lot of data." It refers to datasets whose size, complexity, and rate of growth exceed the capability of traditional database software tools (like SQL Server or Oracle) to capture, store, manage, and analyze within a reasonable timeframe. It represents a fundamental paradigm shift from structured, relational data to massive, unstructured, and real-time data streams used for advanced decision-making and predictive modeling.</p>
 
-                    <h2 class="section-header">2. The V's of Big Data</h2>
-                    <p class="content-text">The definition of Big Data is articulated through its dimensions, commonly known as the V's:</p>
+                    <h2 class="section-header">2. The 6 V's of Big Data</h2>
+                    <p class="content-text">The definition of Big Data is articulated through its dimensions, commonly known as the V's. You must explain all six in an exam:</p>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4 py-1">
+                            <h3 class="font-bold text-lg">1. Volume (The Scale)</h3>
+                            <p class="text-gray-700">Refers to the sheer magnitude of data generated. We have moved from megabytes and gigabytes to petabytes (PB) and zettabytes (ZB). This massive scale requires distributed storage systems like HDFS rather than traditional hard drives.</p>
+                            <p class="text-sm text-gray-500 italic mt-1">Example: A modern jet engine generates over 1 terabyte of sensor data per flight. A single flight is massive; multiply by thousands daily.</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-1">
+                            <h3 class="font-bold text-lg">2. Velocity (The Speed)</h3>
+                            <p class="text-gray-700">The speed at which data is generated, accumulated, and processed. Data flows into organizations at unprecedented speeds and must be dealt with in a timely manner (often real-time) to maximize utility.</p>
+                            <p class="text-sm text-gray-500 italic mt-1">Example: Stock market trading algorithms process millions of buy/sell orders in microseconds to execute high-frequency trades.</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-1">
+                            <h3 class="font-bold text-lg">3. Variety (The Diversity)</h3>
+                            <p class="text-gray-700">The different forms of data. Traditional data was structured (tables, rows, columns), but Big Data is predominantly unstructured or semi-structured, including text, audio, video, geospatial data, and XML/JSON.</p>
+                            <p class="text-sm text-gray-500 italic mt-1">Example: A healthcare patient record now includes structured age/weight data, semi-structured lab reports, and unstructured MRI images.</p>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4 py-1">
+                            <h3 class="font-bold text-lg">4. Veracity (The Uncertainty)</h3>
+                            <p class="text-gray-700">Refers to the quality, trustworthiness, and accuracy of the data. Because Big Data comes from diverse sources, it often contains noise, abnormalities, or biases. If data is not reliable, the analysis will be flawed.</p>
+                            <p class="text-sm text-gray-500 italic mt-1">Example: Social media sentiment analysis can be skewed by bots, sarcasm, or fake accounts.</p>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4 py-1">
+                            <h3 class="font-bold text-lg">5. Value (The Worth)</h3>
+                            <p class="text-gray-700">The most important V. It refers to the ability to transform tsunami-like data into useful business insights. Having data is useless unless it can be turned into profit, social good, or operational efficiency.</p>
+                            <p class="text-sm text-gray-500 italic mt-1">Example: Netflix analyzing user viewing history (Volume) to recommend new shows, directly increasing user retention.</p>
+                        </div>
+                        <div class="border-l-4 border-gray-500 pl-4 py-1">
+                            <h3 class="font-bold text-lg">6. Variability (The Change)</h3>
+                            <p class="text-gray-700">Refers to the inconsistency in the data flow or the changing meaning of data over time. Unlike Velocity (speed), Variability focuses on the peaks, troughs, and context changes in data streams.</p>
+                            <p class="text-sm text-gray-500 italic mt-1">Example: A trending keyword on Twitter might mean "virus" (medical) one day and "computer bug" (tech) the next.</p>
+                        </div>
+                    </div>
+
+                    <h2 class="section-header">3. Key Characteristics</h2>
                     <ul class="list-disc">
-                        <li><strong>Volume (The Scale):</strong> Refers to the sheer magnitude of data generated. We have moved from megabytes to petabytes and zettabytes. Requires distributed storage (HDFS). <em>Example: A modern jet engine generates over 1TB of data per flight.</em></li>
-                        <li><strong>Velocity (The Speed):</strong> The speed at which data is generated and processed. Data flows in at unprecedented speeds and must be dealt with in real-time. <em>Example: Stock market algorithms processing millions of trades in microseconds.</em></li>
-                        <li><strong>Variety (The Diversity):</strong> The different forms of data. Traditional data was structured (SQL tables), but Big Data is largely unstructured (text, audio, video, XML). <em>Example: A patient record containing structured age/weight alongside unstructured MRI images.</em></li>
-                        <li><strong>Veracity (The Uncertainty):</strong> The quality and trustworthiness of data. Biases, noise, and abnormalities affect reliability. <em>Example: Social media sentiment skewed by bots or fake accounts.</em></li>
-                        <li><strong>Value (The Worth):</strong> The most critical V. Transforming data into business insights. Data is useless unless it turns into profit or social good. <em>Example: Netflix analyzing viewing history to recommend shows, increasing retention.</em></li>
-                        <li><strong>Variability (The Change):</strong> Inconsistency in the data flow or changing meaning of data over time (context). <em>Example: A trending hashtag changing meaning from medical to political overnight.</em></li>
+                        <li><strong>High Dimensionality:</strong> Big Data often contains thousands of attributes (columns) per record, making visualization and pattern matching difficult (The Curse of Dimensionality).</li>
+                        <li><strong>Scalability:</strong> The architecture must handle exponential growth without performance degradation via horizontal scaling (adding nodes).</li>
+                        <li><strong>Volatility:</strong> Refers to how long data remains valid and how long it should be stored. E-commerce "cart" data is valid for 30 mins; "purchase history" forever.</li>
+                        <li><strong>Distributed Nature:</strong> Data is rarely central; it is partitioned across different geographic locations or cloud regions to reduce latency and increase resilience.</li>
                     </ul>
 
-                    <h2 class="section-header">3. Characteristics of Big Data</h2>
-                    <ul class="list-disc">
-                        <li><strong>High Dimensionality:</strong> Data often contains thousands of attributes per record, making visualization and pattern matching difficult (Curse of Dimensionality).</li>
-                        <li><strong>Scalability:</strong> The architecture must handle exponential growth via horizontal scaling (adding more machines) rather than vertical scaling.</li>
-                        <li><strong>Heterogeneity:</strong> The system must integrate incompatible formats (SQL, JSON, CSV) simultaneously.</li>
-                        <li><strong>Distributed Nature:</strong> Data is rarely central; it is partitioned across different geographic locations or cloud regions.</li>
-                    </ul>
-
-                    <h2 class="section-header">4. Challenges & Mitigation Strategies</h2>
-                    <div class="overflow-x-auto">
+                    <h2 class="section-header">4. Challenges in Handling Big Data</h2>
+                    <p class="content-text">Implementing Big Data solutions introduces significant hurdles across the entire lifecycle.</p>
+                    <div class="table-container">
                         <table>
-                            <tr><th>Challenge</th><th>Description & Example</th><th>Mitigation Strategy</th></tr>
-                            <tr><td><strong>Storage</strong></td><td>Data grows faster than hardware costs decline. <br><em>Ex: Storing PB of sensor data.</em></td><td>Use <strong>Data Lakes</strong> and <strong>Tiered Storage</strong> (Hot data on SSD, Cold data on Tape/Glacier).</td></tr>
-                            <tr><td><strong>Processing</strong></td><td>Batch jobs take too long (High Latency). <br><em>Ex: Fraud detection taking hours instead of seconds.</em></td><td>Implement <strong>In-Memory Computing</strong> (Spark) or <strong>Stream Processing</strong> (Kafka/Flink).</td></tr>
-                            <tr><td><strong>Data Quality</strong></td><td>"Garbage In, Garbage Out" due to unstructured noise. <br><em>Ex: Duplicate customer records.</em></td><td>Robust <strong>ETL Pipelines</strong> and automated data cleansing/validation rules.</td></tr>
-                            <tr><td><strong>Security</strong></td><td>Centralized massive data is a high-value target. <br><em>Ex: A breach exposing millions of health records.</em></td><td>Data Anonymization, Encryption at Rest/In-Transit, and <strong>Kerberos</strong> authentication.</td></tr>
-                            <tr><td><strong>Skill Gap</strong></td><td>Shortage of experts in Hadoop/Spark/NoSQL. <br><em>Ex: Complexity of writing MapReduce.</em></td><td>Use managed cloud services (AWS EMR, Google BigQuery) and SQL-on-Hadoop tools (Hive).</td></tr>
+                            <thead>
+                                <tr>
+                                    <th>Challenge Area</th>
+                                    <th>Description & Impact</th>
+                                    <th>Mitigation Strategy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Storage</strong></td>
+                                    <td>Data grows faster than storage costs decline. Storing PB of data on expensive SANs is impossible.</td>
+                                    <td>Use <strong>Data Lakes</strong> (HDFS/S3) and <strong>Tiered Storage</strong> (Hot data on fast SSDs, Cold data on cheap magnetic tape or Glacier).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Processing</strong></td>
+                                    <td>The time required to process massive datasets can be prohibitive. Batch jobs taking 24+ hours are useless for real-time needs.</td>
+                                    <td>Implementation of <strong>In-Memory Computing</strong> frameworks like Apache Spark or real-time stream processing engines (Kafka/Flink).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data Quality</strong></td>
+                                    <td>With high Volume and Variety comes "noise." Poor quality leads to "Garbage In, Garbage Out."</td>
+                                    <td>Robust <strong>ETL Pipelines</strong> with automated validation rules and data cleansing steps before analysis.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Security & Privacy</strong></td>
+                                    <td>Centralizing massive amounts of personal data creates a high-value target for cyberattacks. Compliance with GDPR/HIPAA is complex.</td>
+                                    <td>Data Anonymization, Encryption at Rest/In-Transit, and granular <strong>Role-Based Access Control (RBAC)</strong> using tools like Kerberos/Ranger.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Skill Gap</strong></td>
+                                    <td>The tools (Hadoop, Spark, NoSQL, ML) are complex. There is a global shortage of Data Engineers.</td>
+                                    <td>Investing in training, utilizing <strong>Cloud-managed services</strong> (AWS EMR, Google BigQuery) to abstract infrastructure management.</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 `
@@ -112,23 +250,42 @@
             {
                 id: "q2", unit: "Unit I", title: "2. Infrastructure & Technologies",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q2: Infrastructure & Technologies for Big Data</h1>
+                    <h1 class="section-title">Q2: Infrastructure & Technologies for Big Data</h1>
                     
-                    <h2 class="section-header">1. Infrastructure Components</h2>
-                    <p class="content-text">Specialized infrastructure is required because traditional centralized servers cannot scale to petabytes. The infrastructure focuses on <strong>Massive Parallelism</strong> and <strong>Fault Tolerance</strong>.</p>
-                    
-                    <h3 class="sub-header">A. Distributed Storage Systems</h3>
-                    <p class="content-text">Since datasets exceed single-disk capacity, files are broken into blocks and replicated across nodes. If one node fails, data is retrieved from a replica.</p>
-                    <ul><li><em>Examples:</em> <strong>HDFS</strong> (Hadoop Distributed File System), Amazon S3, Google Cloud Storage.</li></ul>
+                    <h2 class="section-header">1. Introduction</h2>
+                    <p class="content-text">Processing Big Data requires specialized infrastructure because traditional, centralized architectures (like a single high-end mainframe or RDBMS server) cannot scale to handle petabytes of data or high-velocity streams. Specialized infrastructure focuses on <strong>massive parallelism</strong>, <strong>fault tolerance</strong>, and <strong>horizontal scalability</strong>.</p>
 
-                    <h3 class="sub-header">B. Compute Infrastructure</h3>
-                    <p class="content-text">Follows the principle of <strong>Data Locality</strong>: moving the computation (code) to where the data resides, rather than moving massive data to a central processor (which clogs the network).</p>
-                    <ul><li><em>Examples:</em> Clusters of commodity servers, Kubernetes (Container orchestration), Virtual Machines.</li></ul>
+                    <h2 class="section-header">2. Infrastructure Components</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="sub-header">A. Distributed Storage Systems</h3>
+                            <p class="content-text">Since datasets exceed the capacity of single disks, storage must be distributed across many nodes. The system breaks large files into blocks and replicates them across multiple physical servers.</p>
+                            <ul class="list-disc">
+                                <li><strong>Role:</strong> Redundancy and High Availability. If one node fails, data is accessible from another.</li>
+                                <li><strong>Examples:</strong> HDFS (Hadoop Distributed File System), Amazon S3, Google Cloud Storage (GCS), Ceph.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="sub-header">B. Compute Infrastructure</h3>
+                            <p class="content-text">The compute layer executes algorithms (filtering, aggregation, ML) on the data. It follows the principle of <strong>Data Locality</strong>: instead of moving 1PB of data to the processor (clogging the network), move the small code (KB) to the node where data resides.</p>
+                            <ul class="list-disc">
+                                <li><strong>Examples:</strong> Computer Clusters (groups of commodity servers), Virtual Machines (VMs), Kubernetes (Container orchestration).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="sub-header">C. Network Infrastructure</h3>
+                            <p class="content-text">The network is the backbone. During the "Shuffle and Sort" phases of MapReduce or Spark jobs, massive amounts of data are transferred between nodes. A weak network becomes the primary bottleneck.</p>
+                            <ul class="list-disc">
+                                <li><strong>Requirements:</strong> 10GbE or 40GbE (Gigabit Ethernet) switches, non-blocking architectures, and redundant paths.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="sub-header">D. Data Center Physicals</h3>
+                            <p class="content-text">Hosting thousands of servers requires specialized facilities. High-density racks generate immense heat, requiring efficient cooling (hot/cold aisle containment) and uninterrupted power supplies (UPS).</p>
+                        </div>
+                    </div>
 
-                    <h3 class="sub-header">C. Network & Data Center</h3>
-                    <p class="content-text">High bandwidth (10GbE or 40GbE) is critical for the "Shuffle and Sort" phase where nodes exchange intermediate data. Data centers require high-density cooling and redundant power to support thousands of running nodes.</p>
-
-                    <h2 class="section-header">2. Big Data Architecture Stack</h2>
+                    <h2 class="section-header">3. Big Data Architecture Stack</h2>
                     <div class="ascii-art">
 +-------------------------------------------------------------+
 |                     APPLICATION LAYER                       |
@@ -160,38 +317,57 @@
 +-------------------------------------------------------------+
                     </div>
 
-                    <h2 class="section-header">3. Key Technologies</h2>
+                    <h2 class="section-header">4. Key Technologies</h2>
+                    <p class="content-text">The software stack runs on top of the infrastructure to manage resources and execute tasks.</p>
                     <div class="highlight-box">
                         <ul class="list-disc">
-                            <li><strong>Hadoop Ecosystem:</strong> The foundation. Includes HDFS (Storage), MapReduce (Batch Processing), and YARN (Resource Management).</li>
-                            <li><strong>Apache Spark:</strong> The speed layer. Uses In-Memory processing (RAM) to run tasks up to 100x faster than MapReduce. Supports SQL, Streaming, and ML.</li>
-                            <li><strong>NoSQL Databases:</strong> Handles unstructured data and flexible schemas. <em>MongoDB</em> (Document), <em>Cassandra</em> (Wide-column), <em>Neo4j</em> (Graph).</li>
-                            <li><strong>Kafka:</strong> A distributed streaming platform for building real-time data pipelines and streaming apps.</li>
+                            <li><strong>Hadoop Ecosystem:</strong> The open-source foundation.
+                                <ul class="ml-4 mt-1 text-sm">
+                                    <li><em>HDFS:</em> Storage.</li>
+                                    <li><em>YARN:</em> Resource Management.</li>
+                                    <li><em>MapReduce:</em> Batch Processing.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Apache Spark:</strong> The speed layer. Uses <strong>In-Memory Computing</strong> (RAM) rather than writing to disk after every step. Supports SQL, streaming, and machine learning. 100x faster than MapReduce.</li>
+                            <li><strong>NoSQL Databases:</strong> Handles unstructured data and flexible schemas.
+                                <ul class="ml-4 mt-1 text-sm">
+                                    <li><em>MongoDB:</em> Document store for JSON.</li>
+                                    <li><em>Cassandra:</em> Wide-column store for massive writes.</li>
+                                    <li><em>HBase:</em> Real-time random access on top of HDFS.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Stream Processing:</strong> Technologies like <strong>Apache Kafka</strong> (ingestion) and <strong>Apache Flink</strong> (processing) handle data in motion (Velocity).</li>
                         </ul>
                     </div>
+
+                    <h2 class="section-header">5. Deployment: On-Premise vs. Cloud</h2>
+                    <ul class="list-disc">
+                        <li><strong>On-Premise:</strong> Total control, security, and lower long-term cost for steady workloads. High CapEx (upfront hardware cost) and maintenance overhead.</li>
+                        <li><strong>Cloud (AWS/Azure/GCP):</strong> Zero upfront cost (OpEx model), elastic scalability (scale up/down in minutes), and managed services. Risk of vendor lock-in and data egress fees.</li>
+                    </ul>
                 `
             },
             {
                 id: "q3", unit: "Unit I", title: "3. Drivers & Types of Analytics",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q3: Market Drivers & Types of Analytics</h1>
+                    <h1 class="section-title">Q3: Market Drivers & Types of Analytics</h1>
 
                     <h2 class="section-header">1. Market & Business Drivers</h2>
-                    <p class="content-text">Organizations are pushed by external market forces and pulled by internal business goals to adopt Big Data.</p>
+                    <p class="content-text">Organizations are pushed by external market forces and pulled by internal business goals to adopt Big Data analytics.</p>
                     
-                    <h3 class="sub-header">Market Drivers (External)</h3>
+                    <h3 class="sub-header">Market Drivers (External Forces)</h3>
                     <ul class="list-disc">
-                        <li><strong>Digital Transformation:</strong> Traditional brick-and-mortar businesses moving online generate massive digital footprints requiring analysis.</li>
-                        <li><strong>Competitive Advantage:</strong> "Data is the new oil." Companies like Netflix use data to predict hits, outmaneuvering traditional cable TV.</li>
-                        <li><strong>IoT Growth:</strong> Explosion of sensors in cars, factories, and homes generates high-velocity streams needing immediate processing.</li>
-                        <li><strong>Regulatory Compliance:</strong> Laws like GDPR and AML (Anti-Money Laundering) require banks to monitor transactions in real-time.</li>
+                        <li><strong>Digital Transformation:</strong> As brick-and-mortar businesses (Banks, Retail) move online, they generate massive digital footprints (logs, clicks) that must be analyzed to understand the digital ecosystem.</li>
+                        <li><strong>Competitive Advantage:</strong> Data is the new oil. Companies like Netflix leverage user viewing data to produce original content they <em>know</em> will be hits, outmaneuvering traditional cable TV.</li>
+                        <li><strong>IoT (Internet of Things) Growth:</strong> The explosion of connected devices (sensors, wearables, smart cars) generates high-velocity data that demands immediate processing for real-time insights.</li>
+                        <li><strong>Regulatory Compliance:</strong> Governments enforce strict data laws (GDPR, HIPAA, AML). Banks must analyze transactions in real-time to detect money laundering and ensure compliance.</li>
                     </ul>
 
-                    <h3 class="sub-header">Business Drivers (Internal)</h3>
+                    <h3 class="sub-header">Business Drivers (Internal Goals)</h3>
                     <ul class="list-disc">
-                        <li><strong>Revenue Growth:</strong> Identifying cross-selling opportunities and untapped market segments.</li>
-                        <li><strong>Cost Optimization:</strong> Identifying inefficiencies in supply chains (e.g., UPS optimizing delivery routes).</li>
-                        <li><strong>Customer 360-View:</strong> Understanding customer sentiment and churn risk to improve retention.</li>
+                        <li><strong>Revenue Growth:</strong> Analytics uncovers new revenue streams, cross-selling opportunities, and untapped market segments.</li>
+                        <li><strong>Cost Optimization:</strong> Identifying inefficiencies and waste. Ex: UPS optimizing delivery routes using analytics to save millions of gallons of fuel annually.</li>
+                        <li><strong>Customer 360-View:</strong> Deeply understanding customer behavior, churn risks, and sentiment is crucial for retention in a competitive market.</li>
                     </ul>
 
                     <h2 class="section-header">2. Types of Analytics (The Maturity Model)</h2>
@@ -219,39 +395,45 @@
                     </div>
 
                     <h2 class="section-header">3. Deep Dive: Predictive Analytics</h2>
-                    <p class="content-text">Predictive analytics is the sweet spot for Big Data. It uses historical data, statistical algorithms, and machine learning techniques to identify the likelihood of future outcomes.</p>
+                    <p class="content-text">Predictive analytics uses historical data, statistical algorithms, and machine learning techniques to identify the likelihood of future outcomes. It shifts the business stance from reactive to proactive.</p>
+                    
+                    <h3 class="sub-header">Key Techniques</h3>
                     <ul class="list-disc">
-                        <li><strong>Techniques:</strong>
-                            <ul class="list-circle ml-4 mt-2">
-                                <li><em>Regression:</em> Predicting continuous values (e.g., Stock prices).</li>
-                                <li><em>Classification:</em> Predicting categories (e.g., Spam vs. Not Spam).</li>
-                                <li><em>Time-Series:</em> Forecasting trends over time (e.g., Seasonal sales).</li>
-                            </ul>
-                        </li>
-                        <li><strong>Real-World Applications:</strong>
-                            <ul class="list-circle ml-4 mt-2">
-                                <li><strong>Retail:</strong> Demand forecasting to optimize inventory levels.</li>
-                                <li><strong>Finance:</strong> Credit scoring to predict loan defaults.</li>
-                                <li><strong>Healthcare:</strong> Predicting patient readmission risk or disease outbreaks.</li>
-                                <li><strong>Manufacturing:</strong> Predictive maintenance (fixing machines before they break).</li>
-                            </ul>
-                        </li>
+                        <li><strong>Regression Analysis:</strong> Determines relationships between variables. Used when the output is continuous (e.g., Predicting exact stock price or temperature).</li>
+                        <li><strong>Classification:</strong> Sorts data into categories. Used when output is categorical (e.g., "Spam" or "Not Spam", "Churn" or "Stay"). Uses Decision Trees, SVM.</li>
+                        <li><strong>Time-Series Analysis:</strong> Analyzes sequences of data points over time to forecast trends (e.g., Predicting seasonal sales or electricity load).</li>
                     </ul>
+
+                    <h3 class="sub-header">Real-World Applications</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <strong>Retail (Demand Forecasting):</strong> Walmart predicts exactly how many units of a specific toy to stock in a specific store before holidays to prevent stockouts.
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <strong>Healthcare (Risk Prediction):</strong> Algorithms analyze patient vitals to predict the likelihood of cardiac arrest or sepsis hours before clinical signs appear.
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <strong>Finance (Credit Scoring):</strong> Banks predict the probability of a loan applicant defaulting based on history and demographics.
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <strong>Manufacturing (Predictive Maintenance):</strong> Sensors predict when a machine part will fail, allowing maintenance during scheduled downtime instead of emergency breakdowns.
+                        </div>
+                    </div>
                 `
             },
             {
                 id: "q4", unit: "Unit I", title: "4. Hadoop vs. Distributed Processing",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q4: Why Hadoop is a Big Data Technology?</h1>
+                    <h1 class="section-title">Q4: Why Hadoop is a Big Data Technology?</h1>
 
                     <h2 class="section-header">1. Why Hadoop Qualifies?</h2>
-                    <p class="content-text">Hadoop is considered the definitive Big Data technology because its architecture fundamentally addresses the Challenges of Volume, Variety, and Velocity:</p>
+                    <p class="content-text">A technology is deemed suitable for Big Data if it can effectively handle Volume, Velocity, and Variety. Hadoop qualifies because its architecture fundamentally addresses these challenges through specific design principles:</p>
                     <ul class="list-disc">
-                        <li><strong>Massive Horizontal Scalability:</strong> Hadoop is designed to scale "out" (adding more machines), not "up". You can start with 10 nodes and scale to 1,000 nodes linearly.</li>
-                        <li><strong>High Fault Tolerance:</strong> It assumes hardware will fail. It replicates data blocks (default 3x) across nodes. If a node crashes, the system automatically recovers data from a replica without user intervention.</li>
-                        <li><strong>Cost Effectiveness:</strong> It runs on "Commodity Hardware" (cheap, standard servers) rather than expensive, proprietary supercomputers.</li>
-                        <li><strong>Data Locality:</strong> Traditional systems move data to the CPU. Hadoop moves the computation (the MapReduce code) to the node where the data resides, saving massive network bandwidth.</li>
-                        <li><strong>Flexibility (Schema-on-Read):</strong> It can store any data format (text, images, logs) without defining a table structure first. Structure is applied only when reading the data.</li>
+                        <li><strong>Massive Horizontal Scalability:</strong> Hadoop is designed to scale "out" (adding more machines), not "up". You can start with a 10-node cluster and scale to 1,000 nodes linearly by simply adding more commodity hardware.</li>
+                        <li><strong>High Fault Tolerance:</strong> It assumes hardware will fail. It replicates data blocks (typically 3 copies) across different nodes. If a node crashes, the system automatically recovers data from a replica without user intervention.</li>
+                        <li><strong>Cost Effectiveness:</strong> Unlike traditional enterprise data warehouses that rely on expensive, proprietary hardware, Hadoop runs on "Commodity Hardware" (standard, inexpensive servers), drastically reducing CapEx.</li>
+                        <li><strong>Data Locality:</strong> Traditional systems move data to the processor (causing network bottlenecks). Hadoop moves the computation (the MapReduce code) to the node where the data resides. This addresses the <strong>Velocity</strong> challenge by minimizing data transfer.</li>
+                        <li><strong>Flexibility (Schema-on-Read):</strong> Hadoop can store structured, semi-structured, and unstructured data without defining a schema upfront. Structure is applied only when reading the data, handling the <strong>Variety</strong> challenge.</li>
                     </ul>
 
                     <h2 class="section-header">2. Hadoop Architecture Overview</h2>
@@ -260,25 +442,62 @@
   |       RESOURCE MANAGEMENT (YARN)        |
   |  (ResourceManager + NodeManagers)       |
   |  * Arbitrates cluster resources         |
+  |  * Schedules applications               |
   +--------------------+--------------------+
                        |
   +--------------------v--------------------+
   |           STORAGE LAYER (HDFS)          |
   |  NameNode (Master) + DataNodes (Slaves) |
-  |  * Distributed, Replicated File System  |
+  |  * Distributed File System              |
+  |  * Handles Replication & Fault Tolerance|
   +-----------------------------------------+
                     </div>
 
                     <h2 class="section-header">3. Big Data Processing vs. Distributed Processing</h2>
-                    <table>
-                        <tr><th>Feature</th><th>Big Data Processing (Hadoop)</th><th>General Distributed Processing</th></tr>
-                        <tr><td><strong>Data Volume</strong></td><td>Petabytes to Exabytes (Extreme Scale)</td><td>MBs to Terabytes (Moderate Scale)</td></tr>
-                        <tr><td><strong>Processing Approach</strong></td><td><strong>Data Locality:</strong> Move Code to Data.</td><td><strong>RPC/Message Passing:</strong> Move Data to Compute.</td></tr>
-                        <tr><td><strong>Hardware</strong></td><td>Commodity Hardware (Expected to fail).</td><td>High-End/Specialized Hardware (Reliable).</td></tr>
-                        <tr><td><strong>Scalability</strong></td><td>Horizontal (Linear Scale-out).</td><td>Often Vertical or Limited Horizontal.</td></tr>
-                        <tr><td><strong>Schema</strong></td><td>Handles Variety (Structured/Unstructured).</td><td>Typically requires Structured/Homogenous data.</td></tr>
-                        <tr><td><strong>Consistency</strong></td><td>Eventual Consistency / BASE model.</td><td>Often requires Strict ACID consistency.</td></tr>
-                    </table>
+                    <p class="content-text">While Big Data uses distributed processing techniques, they are distinct paradigms.</p>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Big Data Processing (Hadoop)</th>
+                                    <th>General Distributed Processing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Data Volume</strong></td>
+                                    <td>Extremely large (Petabytes to Exabytes)</td>
+                                    <td>Can be any size (MBs to Terabytes)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Processing Approach</strong></td>
+                                    <td><strong>Data Locality:</strong> Move Code to Data.</td>
+                                    <td><strong>RPC/Message Passing:</strong> Coordinating tasks across machines (often moving data).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hardware</strong></td>
+                                    <td>Commodity Hardware (Cheap, expected to fail).</td>
+                                    <td>Often Specialized/High-End Hardware (Reliable).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scalability</strong></td>
+                                    <td>Horizontal (Linear Scale-out).</td>
+                                    <td>Can be Vertical or limited Horizontal.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Schema</strong></td>
+                                    <td>Handles Variety (Structured, Unstructured, Semi).</td>
+                                    <td>Typically requires Structured/Homogenous data.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fault Tolerance</strong></td>
+                                    <td>Built-in at software level (Replication).</td>
+                                    <td>Often handled at hardware level or app logic.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `
             },
 
@@ -286,19 +505,19 @@
             {
                 id: "q5", unit: "Unit II", title: "5. Hadoop Ecosystem & Architecture",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q5: Hadoop Ecosystem: Building Blocks & Architecture</h1>
+                    <h1 class="section-title">Q5: Hadoop Ecosystem: Building Blocks & Architecture</h1>
 
                     <h2 class="section-header">1. Introduction</h2>
-                    <p class="content-text">The Hadoop Ecosystem is not just a single tool but a comprehensive suite of open-source frameworks providing the infrastructure to store, manage, and process massive datasets. It decouples storage from processing.</p>
+                    <p class="content-text">The Hadoop Ecosystem is not just a single tool but a comprehensive suite of open-source software frameworks developed by the Apache Foundation. It provides the infrastructure required to store, manage, and process massive data sets across distributed clusters. It decouples storage (HDFS) from resource management (YARN) and processing (MapReduce/Spark).</p>
 
                     <h2 class="section-header">2. Core Building Blocks</h2>
                     <ul class="list-disc">
-                        <li><strong>HDFS (Hadoop Distributed File System):</strong> The storage layer. It breaks huge files into blocks (128MB) and distributes them across the cluster. Guarantees fault tolerance via replication.</li>
-                        <li><strong>MapReduce:</strong> The original processing engine. It processes data in two phases: Map (filtering/sorting) and Reduce (aggregating).</li>
-                        <li><strong>YARN (Yet Another Resource Negotiator):</strong> The operating system of the cluster. It manages resources (CPU/RAM) and schedules jobs, allowing multiple engines (Spark, MapReduce) to run simultaneously.</li>
+                        <li><strong>HDFS (Hadoop Distributed File System):</strong> The storage layer. It breaks huge files into blocks (default 128MB) and distributes them across the cluster nodes. It guarantees high throughput and fault tolerance via replication.</li>
+                        <li><strong>MapReduce:</strong> The original processing engine. It is a programming model that processes data in two phases: <strong>Map</strong> (filtering, sorting, transforming) and <strong>Reduce</strong> (aggregating).</li>
+                        <li><strong>YARN (Yet Another Resource Negotiator):</strong> The operating system of the cluster. It manages resources (CPU/RAM) and schedules jobs, allowing different processing engines (like Spark and MapReduce) to run on the same cluster simultaneously.</li>
                     </ul>
 
-                    <h2 class="section-header">3. Ecosystem Architecture Diagram</h2>
+                    <h2 class="section-header">3. Hadoop Ecosystem Architecture Diagram</h2>
                     <div class="ascii-art">
        [ Clients / BI Tools / Analysts ]
                |
@@ -310,12 +529,13 @@
 +--------------v----------------------------------+
 |            PROCESSING LAYER                     |
 |  [Apache Spark]       [MapReduce]               |
-|  (In-Memory)          (Batch)                   |
+|  (In-Memory Speed)    (Batch Processing)        |
 +--------------+----------------------------------+
                |
 +--------------v----------------------------------+
 |         RESOURCE MANAGEMENT (YARN)              |
 |  (ResourceManager + NodeManagers)               |
+|  (Allocates Resources & Schedules Jobs)         |
 +--------------+----------------------------------+
                |
 +--------------v----------------------------------+
@@ -327,173 +547,248 @@
 [Sqoop] (RDBMS Import)   [Flume] (Log Ingest)   [Oozie] (Workflow)   [Zookeeper] (Coordination)
                     </div>
 
-                    <h2 class="section-header">4. Detailed Component Roles</h2>
-                    <ul class="list-disc">
-                        <li><strong>Apache Hive:</strong> A Data Warehouse tool that projects a SQL-like structure onto HDFS. Used by analysts for reporting. <em>Use-case: Daily sales summary.</em></li>
-                        <li><strong>Apache Pig:</strong> A high-level scripting language (Pig Latin) for ETL. Abstracts MapReduce complexity. <em>Use-case: Cleaning messy log files.</em></li>
-                        <li><strong>Apache Sqoop:</strong> "SQL-to-Hadoop". Transfers bulk data between Hadoop and RDBMS (Oracle/MySQL).</li>
-                        <li><strong>Apache Flume:</strong> Distributed service for collecting, aggregating, and moving large amounts of streaming log data into HDFS.</li>
-                        <li><strong>Apache Oozie:</strong> A workflow scheduler to manage Hadoop jobs (e.g., Run Sqoop -> then Hive -> then Email report).</li>
-                        <li><strong>Apache Zookeeper:</strong> A centralized service for maintaining configuration, naming, and providing distributed synchronization (The coordinator).</li>
-                        <li><strong>Apache HBase:</strong> A NoSQL column-oriented database that runs on top of HDFS, providing real-time read/write access.</li>
-                    </ul>
+                    <h2 class="section-header">4. Detailed Component Roles & Use Cases</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white border rounded p-3 shadow-sm">
+                            <strong>Apache Hive:</strong> A Data Warehouse infrastructure. Projects a SQL-like structure onto data in HDFS. Used by analysts for reporting/summarization.
+                            <br><em>Use-case: Generating a daily sales summary report using SQL.</em>
+                        </div>
+                        <div class="bg-white border rounded p-3 shadow-sm">
+                            <strong>Apache Pig:</strong> A high-level platform for creating MapReduce programs using a scripting language (Pig Latin). Good for ETL.
+                            <br><em>Use-case: Cleaning and reshaping messy unstructured log files.</em>
+                        </div>
+                        <div class="bg-white border rounded p-3 shadow-sm">
+                            <strong>Apache Sqoop:</strong> "SQL-to-Hadoop". Efficiently transfers bulk data between Hadoop and structured datastores (RDBMS like Oracle/MySQL).
+                            <br><em>Use-case: Importing customer tables from Oracle to HDFS for analysis.</em>
+                        </div>
+                        <div class="bg-white border rounded p-3 shadow-sm">
+                            <strong>Apache Flume:</strong> Distributed service for collecting, aggregating, and moving large amounts of streaming data (logs) into HDFS.
+                            <br><em>Use-case: Streaming web server logs directly into HDFS in real-time.</em>
+                        </div>
+                        <div class="bg-white border rounded p-3 shadow-sm">
+                            <strong>Apache Oozie:</strong> A workflow scheduler system to manage Hadoop jobs. Defines dependency DAGs.
+                            <br><em>Use-case: Automating a pipeline: 1. Run Sqoop -> 2. Run Hive Query -> 3. Email Report.</em>
+                        </div>
+                        <div class="bg-white border rounded p-3 shadow-sm">
+                            <strong>Apache Zookeeper:</strong> A centralized service for maintaining configuration information, naming, and providing distributed synchronization.
+                            <br><em>Use-case: Tracking which nodes are "alive" (Cluster coordination).</em>
+                        </div>
+                    </div>
                 `
             },
             {
                 id: "q6", unit: "Unit II", title: "6. HDFS Architecture & Commands",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q6: HDFS Definition, Architecture & Commands</h1>
+                    <h1 class="section-title">Q6: HDFS Definition, Architecture & Commands</h1>
 
                     <h2 class="section-header">1. Definition & Key Features</h2>
-                    <p class="content-text">HDFS is a Java-based distributed file system designed to run on commodity hardware. It is optimized for <strong>throughput</strong> (batch processing) rather than <strong>latency</strong> (interactive access).</p>
+                    <p class="content-text">The Hadoop Distributed File System (HDFS) is the primary storage system of Hadoop. It is designed to store very large datasets reliably and stream them at high bandwidth to user applications.</p>
                     <ul class="list-disc">
+                        <li><strong>Distributed Storage:</strong> Stores data across thousands of servers.</li>
+                        <li><strong>Fault Tolerance:</strong> Automatically detects hardware failures and recovers data by maintaining multiple copies (replicas) of data blocks.</li>
+                        <li><strong>High Throughput:</strong> Optimized for batch processing (reading large continuous streams) rather than low latency access.</li>
                         <li><strong>Large File Support:</strong> Tuned for files GBs to TBs in size.</li>
-                        <li><strong>Write-Once-Read-Many (WORM):</strong> Assumes files are written once and read often, simplifying consistency.</li>
-                        <li><strong>Fault Tolerance:</strong> Automatic failure detection and recovery via block replication.</li>
                     </ul>
 
                     <h2 class="section-header">2. HDFS Architecture (Master-Slave)</h2>
+                    <p class="content-text">HDFS follows a strictly Master-Slave Architecture.</p>
                     <div class="highlight-box">
                         <ul class="list-disc">
-                            <li><strong>NameNode (Master):</strong> The centerpiece. It stores the <strong>Metadata</strong> (file names, permissions, directory structure, and the mapping of blocks to DataNodes) in RAM. It does <em>not</em> store actual data. Single point of failure (mitigated by High Availability setups).</li>
-                            <li><strong>DataNode (Slave):</strong> The workhorses. They store the actual data <strong>Blocks</strong>. They send "Heartbeats" (every 3s) and "Block Reports" to the NameNode to prove they are alive.</li>
-                            <li><strong>Secondary NameNode:</strong> Not a backup! It performs "Checkpointing"—merging the edit log with the fsimage to prevent the logs from growing too large.</li>
+                            <li><strong>NameNode (The Master):</strong> The centerpiece. It stores the <strong>Metadata</strong> (file names, permissions, directory structure, and the mapping of blocks to DataNodes) in RAM. It does <em>not</em> store actual data. It is a Single Point of Failure (mitigated by HA setups).</li>
+                            <li><strong>DataNode (The Slaves):</strong> The workhorses. They store the actual data <strong>Blocks</strong> on their local disk. They send "Heartbeats" (every 3s) and "Block Reports" (every hour) to the NameNode to signal they are alive and list the blocks they hold.</li>
+                            <li><strong>Secondary NameNode:</strong> Not a backup/hot-standby! It acts as a helper to perform "Checkpointing"—merging the edit log with the fsimage to prevent the edit logs from growing indefinitely.</li>
                         </ul>
                     </div>
 
                     <h2 class="section-header">3. Block Structure & Rack Awareness</h2>
-                    <p class="content-text"><strong>Blocks:</strong> Files are split into fixed-size chunks (default <strong>128 MB</strong>). Large blocks minimize the cost of disk seeks.</p>
-                    <p class="content-text"><strong>Replication Policy (Default 3):</strong></p>
-                    <ol class="list-decimal">
-                        <li>Replica 1: Local Node (Writer).</li>
-                        <li>Replica 2: Different Rack (To survive rack switch failure).</li>
-                        <li>Replica 3: Different Node on the Same Remote Rack (To save bandwidth).</li>
-                    </ol>
+                    <ul class="list-disc">
+                        <li><strong>Blocks:</strong> HDFS splits files into large, fixed-size chunks called blocks. Default size is <strong>128 MB</strong> (Hadoop 2.x). Large blocks minimize the cost of disk seeks.</li>
+                        <li><strong>Replication Policy (Rack Awareness):</strong> To ensure fault tolerance, every block is replicated (Default Factor: 3).
+                            <ol class="list-decimal ml-6 mt-1">
+                                <li>Replica 1: On the Local Node (Writer).</li>
+                                <li>Replica 2: On a Node in a <strong>Different Rack</strong> (Protects against Rack Switch failure).</li>
+                                <li>Replica 3: On a Different Node in the <strong>Same Remote Rack</strong> (Optimizes bandwidth).</li>
+                            </ol>
+                        </li>
+                    </ul>
 
-                    <h2 class="section-header">4. Visual Flow</h2>
+                    <h2 class="section-header">4. Visual Architecture Diagram</h2>
                     <div class="ascii-art">
-       [ NameNode (Metadata) ] <-------+
-            ^      |                   |
- Heartbeat  |      | Command (Replicate)|
-            |      v                   |
-      [ DataNode 1 (Block A) ] ----> [ DataNode 2 (Block A Copy) ]
-      (Rack 1)                       (Rack 2)
+       +------------------+
+       |     NameNode     |  (Master: Metadata)
+       | (RAM: File Map)  |
+       +--------+---------+
+                | ^
+      Command   | | Heartbeat (3s)
+      (Delete)  | | (I am alive)
+                v |
++-------------------------------------------------------------+
+|   +--------------+             +--------------+             |
+|   |  DataNode 1  |   Replication   |  DataNode 2  |             |
+|   | [Block A1]   |------------>| [Block A2]   |             |
+|   +--------------+             +--------------+             |
+|          ^                                                  |
+|          | (Client Writes Data Here)                        |
++-------------------------------------------------------------+
                     </div>
 
                     <h2 class="section-header">5. Basic HDFS Commands</h2>
-                    <table>
-                        <tr><th>Command</th><th>Syntax / Example</th><th>Description</th></tr>
-                        <tr><td><strong>ls</strong></td><td><code>hdfs dfs -ls /user/data</code></td><td>Lists files in HDFS directory.</td></tr>
-                        <tr><td><strong>put</strong></td><td><code>hdfs dfs -put local.txt /hdfs/path</code></td><td>Uploads local file to HDFS.</td></tr>
-                        <tr><td><strong>get</strong></td><td><code>hdfs dfs -get /hdfs/path local.txt</code></td><td>Downloads HDFS file to local system.</td></tr>
-                        <tr><td><strong>cat</strong></td><td><code>hdfs dfs -cat /hdfs/file.txt</code></td><td>Reads and displays file content.</td></tr>
-                        <tr><td><strong>mkdir</strong></td><td><code>hdfs dfs -mkdir /newdir</code></td><td>Creates a new directory in HDFS.</td></tr>
-                        <tr><td><strong>rm</strong></td><td><code>hdfs dfs -rm -r /user/junk</code></td><td>Deletes a file or directory.</td></tr>
-                        <tr><td><strong>du</strong></td><td><code>hdfs dfs -du -h /user/data</code></td><td>Displays disk usage of files.</td></tr>
-                        <tr><td><strong>setrep</strong></td><td><code>hdfs dfs -setrep -w 2 /file</code></td><td>Changes replication factor of a file.</td></tr>
-                    </table>
+                    <p class="content-text">Commands are executed via the <code>hdfs dfs</code> shell.</p>
+                    <div class="table-container">
+                        <table>
+                            <tr><th>Command</th><th>Syntax / Example</th><th>Description</th></tr>
+                            <tr><td><strong>ls</strong></td><td><code>hdfs dfs -ls /user/data</code></td><td>Lists files and directories in HDFS.</td></tr>
+                            <tr><td><strong>put</strong></td><td><code>hdfs dfs -put local.txt /hdfs/path</code></td><td>Uploads a file from the local system to HDFS.</td></tr>
+                            <tr><td><strong>get</strong></td><td><code>hdfs dfs -get /hdfs/path local.txt</code></td><td>Downloads a file from HDFS to local system.</td></tr>
+                            <tr><td><strong>cat</strong></td><td><code>hdfs dfs -cat /hdfs/file.txt</code></td><td>Reads and displays file content to stdout.</td></tr>
+                            <tr><td><strong>mkdir</strong></td><td><code>hdfs dfs -mkdir /newdir</code></td><td>Creates a new directory in HDFS.</td></tr>
+                            <tr><td><strong>rm</strong></td><td><code>hdfs dfs -rm -r /user/junk</code></td><td>Deletes a file or directory (-r for recursive).</td></tr>
+                            <tr><td><strong>du</strong></td><td><code>hdfs dfs -du -h /user/data</code></td><td>Displays disk usage of files (human readable).</td></tr>
+                            <tr><td><strong>setrep</strong></td><td><code>hdfs dfs -setrep -w 2 /file</code></td><td>Changes replication factor of a file to 2.</td></tr>
+                            <tr><td><strong>dfsadmin</strong></td><td><code>hdfs dfsadmin -report</code></td><td>Admin command to check cluster health/safemode.</td></tr>
+                        </table>
+                    </div>
                 `
             },
             {
                 id: "q7", unit: "Unit II", title: "7. MapReduce Concept & Examples",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q7: MapReduce Concept, Phases & Example</h1>
+                    <h1 class="section-title">Q7: MapReduce Concept, Phases & Example</h1>
 
-                    <h2 class="section-header">1. Concept</h2>
-                    <p class="content-text">MapReduce is a programming model for processing large data sets with a parallel, distributed algorithm on a cluster. It abstracts the complexity of parallelization, allowing developers to focus only on the business logic.</p>
+                    <h2 class="section-header">1. Introduction to MapReduce</h2>
+                    <p class="content-text">MapReduce is a distributed programming model and software framework introduced by Google. It is designed to process massive datasets (terabytes to petabytes) in parallel across large clusters. It abstracts the complexity of parallelization, fault tolerance, and data distribution, allowing developers to focus simply on the logic of "Mapping" data into key-value pairs and "Reducing" them to a final result.</p>
 
                     <h2 class="section-header">2. Execution Phases</h2>
                     <ul class="list-disc">
-                        <li><strong>Input Splits:</strong> Data is divided into logical chunks. One Map task is spawned per split.</li>
-                        <li><strong>Map Phase:</strong> Processes input records independently. Converts input to intermediate <code>(Key, Value)</code> pairs. Logic: Filtering, Transformation.</li>
-                        <li><strong>Shuffle & Sort:</strong> The "Magic" phase. The framework automatically transfers data between nodes. It guarantees that all values associated with the <em>same key</em> are grouped together and sent to the same Reducer.</li>
-                        <li><strong>Reduce Phase:</strong> Receives a Key and a List of Values. Performs aggregation (Sum, Max, Average).</li>
-                        <li><strong>Output:</strong> Writes the final result to HDFS.</li>
+                        <li><strong>Input Splits:</strong> Before processing, input data is divided into logical chunks called Splits. One Map task is spawned per split.</li>
+                        <li><strong>Map Phase:</strong> The Map function runs on each split. It processes input records independently and converts them into intermediate <code>(Key, Value)</code> pairs. Logic usually involves filtering, parsing, or transformation.</li>
+                        <li><strong>Shuffle & Sort:</strong> The "Magic" phase managed by the framework. It transfers intermediate data from Mappers to Reducers. Crucially, it guarantees that all values associated with the <em>same key</em> are grouped together and sent to the same Reducer.</li>
+                        <li><strong>Reduce Phase:</strong> Receives a Key and an Iterable List of Values. It iterates through the values to perform an aggregation operation (Sum, Max, Average).</li>
+                        <li><strong>Output Phase:</strong> The final output of the Reduce task is written back to HDFS.</li>
                     </ul>
 
                     <h2 class="section-header">3. Workflow Diagram</h2>
                     <div class="ascii-art">
-[Input File] 
-    |
- [Split 1]        [Split 2]
-    |                |
- [MAP Task]       [MAP Task]
- (k1, v1)         (k1, v1)
-    \                /
-     \              /
-   [ SHUFFLE & SORT ] (Group by Key)
-           |
-      [REDUCE Task]
-      (Aggregation)
-           |
-     [Output Part-File]
+[Input Files (HDFS)]
+       |
+ [Input Split 1]      [Input Split 2]
+       |                    |
+ [ MAP TASK ]         [ MAP TASK ]
+ (k1, v1) ->          (k1, v1) ->
+ List(k2,v2)          List(k2,v2)
+       \                  /
+        \                /
+     [ SHUFFLE & SORT PHASE ] 
+     (Group values by Key across network)
+               |
+         [ REDUCE TASK ]
+         (Aggregation: Sum/Avg)
+               |
+        [Output File (HDFS)]
                     </div>
 
                     <h2 class="section-header">4. Complete Example: Word Count</h2>
-                    <p class="content-text"><strong>Problem:</strong> Count the frequency of every word in a text file.</p>
+                    <p class="content-text"><strong>Problem:</strong> Count the frequency of every word in a large text file.</p>
                     <div class="highlight-box">
-                        <p><strong>Input:</strong></p>
-                        <pre>Line 1: "Big Data"</pre>
-                        <pre>Line 2: "Big Value"</pre>
+                        <p><strong>Sample Input:</strong></p>
+                        <pre>Line 1: "Big Data is Big"</pre>
+                        <pre>Line 2: "Data is Value"</pre>
                         
-                        <p class="mt-4"><strong>1. Map Phase:</strong></p>
-                        <p>Tokenize line. Emit (Word, 1).</p>
-                        <p><em>Output:</em> <code>(Big, 1), (Data, 1), (Big, 1), (Value, 1)</code></p>
+                        <p class="mt-4"><strong>Step 1: Map Phase</strong></p>
+                        <p>The Mapper reads lines and splits them into words. For every word, it emits <code>(Word, 1)</code>.</p>
+                        <p><em>Output:</em> <code>(Big, 1), (Data, 1), (is, 1), (Big, 1), (Data, 1), (is, 1), (Value, 1)</code></p>
 
-                        <p class="mt-4"><strong>2. Shuffle Phase:</strong></p>
-                        <p>Group by Key.</p>
+                        <p class="mt-4"><strong>Step 2: Shuffle & Sort Phase</strong></p>
+                        <p>The framework groups values by Key.</p>
                         <p><em>Input to Reducer:</em></p>
                         <pre>Key: "Big"   -> Values: [1, 1]</pre>
-                        <pre>Key: "Data"  -> Values: [1]</pre>
+                        <pre>Key: "Data"  -> Values: [1, 1]</pre>
+                        <pre>Key: "is"    -> Values: [1, 1]</pre>
                         <pre>Key: "Value" -> Values: [1]</pre>
 
-                        <p class="mt-4"><strong>3. Reduce Phase:</strong></p>
-                        <p>Sum the list of values.</p>
+                        <p class="mt-4"><strong>Step 3: Reduce Phase</strong></p>
+                        <p>The Reducer sums the list of values for each key.</p>
                         <p><em>Final Output:</em></p>
                         <pre>Big    2</pre>
-                        <pre>Data   1</pre>
+                        <pre>Data   2</pre>
+                        <pre>is     2</pre>
                         <pre>Value  1</pre>
                     </div>
 
-                    <h2 class="section-header">5. Formats</h2>
+                    <h2 class="section-header">5. Formats & Job Types</h2>
                     <ul class="list-disc">
-                        <li><strong>InputFormats:</strong> <code>TextInputFormat</code> (Default, treats lines as values), <code>KeyValueTextInputFormat</code>, <code>SequenceFileInputFormat</code> (Binary, efficient).</li>
-                        <li><strong>OutputFormats:</strong> <code>TextOutputFormat</code>, <code>SequenceFileOutputFormat</code>.</li>
+                        <li><strong>InputFormats:</strong> <code>TextInputFormat</code> (Default, reads lines), <code>KeyValueTextInputFormat</code>, <code>SequenceFileInputFormat</code> (Binary, compressed).</li>
+                        <li><strong>Map-Only Jobs:</strong> Jobs without a Reducer. Used for filtering or parsing where no aggregation is needed. Faster as it skips Shuffle/Sort.</li>
+                        <li><strong>Chained Jobs:</strong> Connecting multiple MapReduce jobs where Output of Job 1 = Input of Job 2.</li>
                     </ul>
                 `
             },
             {
                 id: "q8", unit: "Unit II", title: "8. YARN & RDBMS Comparison",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q8: YARN & RDBMS vs Hadoop</h1>
+                    <h1 class="section-title">Q8: YARN & RDBMS vs Hadoop</h1>
 
                     <h2 class="section-header">1. YARN (Yet Another Resource Negotiator)</h2>
-                    <p class="content-text">In Hadoop 1.x, the MapReduce engine handled both processing and resource management, creating a bottleneck. YARN (Hadoop 2.x) acts as the <strong>Cluster Operating System</strong>, decoupling these functions.</p>
+                    <p class="content-text">In Hadoop 1.x, the MapReduce engine handled both processing logic and cluster resource management, creating a bottleneck. YARN (introduced in Hadoop 2.x) acts as the **Cluster Operating System**, decoupling these functions.</p>
                     
-                    <h3 class="sub-header">YARN Components</h3>
+                    <h3 class="sub-header">YARN Architecture Components</h3>
                     <ul class="list-disc">
-                        <li><strong>ResourceManager (RM):</strong> The Global Master. It arbitrates resources (RAM/CPU) among all competing applications in the system. It has a Scheduler (Fair/Capacity).</li>
-                        <li><strong>NodeManager (NM):</strong> The Per-Node Slave. It launches and monitors <strong>Containers</strong> (the unit of resource allocation) and reports usage back to the RM.</li>
-                        <li><strong>ApplicationMaster (AM):</strong> One per application. It negotiates resources from the RM and works with the NM to execute and monitor tasks.</li>
+                        <li><strong>ResourceManager (RM):</strong> The Global Master. It acts as the ultimate authority that arbitrates resources (RAM/CPU) among all competing applications in the system. It has a pluggable <strong>Scheduler</strong> (Fair/Capacity).</li>
+                        <li><strong>NodeManager (NM):</strong> The Per-Node Slave. It is responsible for launching and monitoring <strong>Containers</strong> (the abstract unit of resource allocation) and reporting resource usage back to the RM.</li>
+                        <li><strong>ApplicationMaster (AM):</strong> A per-application library. It negotiates resources from the RM and works with the NodeManager to execute and monitor the component tasks. It handles failure recovery for the specific job.</li>
                     </ul>
 
-                    <h2 class="section-header">2. YARN Benefits</h2>
+                    <h3 class="sub-header">Benefits of YARN</h3>
                     <ul class="list-disc">
-                        <li><strong>Scalability:</strong> RM focuses only on scheduling, allowing clusters to scale to 10,000+ nodes.</li>
-                        <li><strong>Multi-Tenancy:</strong> Supports multiple engines (Spark, MapReduce, Storm) running on the same hardware simultaneously.</li>
-                        <li><strong>Utilization:</strong> Efficiently packs tasks into containers rather than fixed Map/Reduce slots.</li>
+                        <li><strong>Scalability:</strong> Since the RM focuses only on scheduling (not monitoring tasks), clusters can scale to 10,000+ nodes.</li>
+                        <li><strong>Multi-Tenancy:</strong> Supports multiple processing engines (Spark, MapReduce, Storm, HBase) running on the same physical hardware simultaneously, sharing the same data in HDFS.</li>
+                        <li><strong>Utilization:</strong> Efficiently packs tasks into generic containers rather than fixed "Map Slots" and "Reduce Slots" (Hadoop 1.x limitation).</li>
                     </ul>
 
-                    <h2 class="section-header">3. Comparison: RDBMS vs. Hadoop</h2>
-                    <table>
-                        <tr><th>Feature</th><th>RDBMS (Relational)</th><th>Hadoop (Big Data)</th></tr>
-                        <tr><td><strong>Data Structure</strong></td><td>Structured only (Tables, Rows).</td><td>Structured, Semi-structured, Unstructured.</td></tr>
-                        <tr><td><strong>Schema Approach</strong></td><td><strong>Schema-on-Write:</strong> Structure enforced on data entry. High integrity.</td><td><strong>Schema-on-Read:</strong> Raw data stored as-is. Structure applied during query. Flexible.</td></tr>
-                        <tr><td><strong>Scalability</strong></td><td><strong>Vertical (Scale-up):</strong> Add more RAM/CPU to one server. Expensive limits.</td><td><strong>Horizontal (Scale-out):</strong> Add more cheap servers. Linear scaling.</td></tr>
-                        <tr><td><strong>Consistency</strong></td><td><strong>ACID:</strong> Atomicity, Consistency, Isolation, Durability. Essential for transactions.</td><td><strong>BASE / Eventual Consistency:</strong> Focuses on Availability and Partition tolerance.</td></tr>
-                        <tr><td><strong>Processing Speed</strong></td><td>Fast for small, indexed queries.</td><td>High throughput for massive scans (Batch). High latency for small queries.</td></tr>
-                        <tr><td><strong>Use Case</strong></td><td>OLTP (Banking, E-commerce checkout).</td><td>OLAP (Analytics, Archiving, Log Analysis).</td></tr>
-                    </table>
+                    <h2 class="section-header">2. Comparison: RDBMS vs. Hadoop</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>RDBMS (Relational DB)</th>
+                                    <th>Hadoop (Big Data)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Data Structure</strong></td>
+                                    <td>Structured data only (Tables, Rows, Columns).</td>
+                                    <td>Structured, Semi-structured (JSON), Unstructured (Logs, Video).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Schema</strong></td>
+                                    <td><strong>Schema-on-Write:</strong> Data must fit a rigid schema before loading. High integrity.</td>
+                                    <td><strong>Schema-on-Read:</strong> Raw data stored as-is. Structure is applied only when reading. Flexible.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scalability</strong></td>
+                                    <td><strong>Vertical (Scale-up):</strong> Add more RAM/CPU to a single server. Expensive and has limits.</td>
+                                    <td><strong>Horizontal (Scale-out):</strong> Add more cheap commodity servers. Linear and unlimited.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Consistency</strong></td>
+                                    <td><strong>ACID:</strong> Strong Atomicity, Consistency, Isolation, Durability. Essential for banking.</td>
+                                    <td><strong>BASE / Eventual Consistency:</strong> Focuses on Availability and Partition tolerance. Updates propagate eventually.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Processing Speed</strong></td>
+                                    <td>Fast for small, indexed transactional queries.</td>
+                                    <td>High throughput for massive scans (Batch). High latency for small queries.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Use Case</strong></td>
+                                    <td>OLTP (Online Transaction Processing) - e.g., E-commerce checkout.</td>
+                                    <td>OLAP (Online Analytical Processing) - e.g., Log analysis, Archiving.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `
             },
 
@@ -501,94 +796,102 @@
             {
                 id: "q9", unit: "Unit III", title: "9. Hive Working & Metastore",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q9: Hive Architecture, Working & Metastore</h1>
+                    <h1 class="section-title">Q9: Hive Architecture, Working & Metastore</h1>
 
                     <h2 class="section-header">1. Introduction</h2>
-                    <p class="content-text">Hive bridges the gap between SQL-proficient analysts and the Java-based Hadoop system. It allows querying HDFS data using <strong>HiveQL</strong> (SQL-like).</p>
+                    <p class="content-text">Apache Hive is a data warehousing infrastructure built on top of Hadoop. It bridges the gap between SQL-proficient analysts and the complex Java-based Hadoop system. It facilitates querying and managing large datasets residing in distributed storage using a SQL-like language called <strong>HiveQL</strong> (HQL).</p>
 
                     <h2 class="section-header">2. Architecture Components</h2>
                     <ul class="list-disc">
-                        <li><strong>UI/Clients:</strong> CLI, Web UI, Thrift Server (JDBC/ODBC drivers for Tableau/Excel).</li>
-                        <li><strong>Driver:</strong> The brain. Receives queries, implements session handles, and orchestrates execution.</li>
+                        <li><strong>UI/Clients:</strong> How users interact. Includes CLI, Web UI, and <strong>Thrift Server</strong> (allows JDBC/ODBC connections for tools like Tableau/Excel).</li>
+                        <li><strong>Driver:</strong> The brain of the architecture. It receives queries, implements session handles, and orchestrates the execution life cycle.</li>
                         <li><strong>Compiler:</strong> Parses the query, performs semantic analysis, and generates an execution plan.</li>
-                        <li><strong>Metastore:</strong> The central repository. It stores metadata (table definitions, column names, data types, HDFS locations). It separates data (in HDFS) from structure (in RDBMS).</li>
-                        <li><strong>Optimizer:</strong> improving the execution plan (e.g., Partition Pruning, Map-Side Joins) for efficiency.</li>
-                        <li><strong>Execution Engine:</strong> Executes the plan. Historically MapReduce, but modern Hive uses <strong>Apache Tez</strong> or <strong>Spark</strong> for speed.</li>
+                        <li><strong>Metastore:</strong> The central repository that stores all metadata (table definitions, column names, data types, HDFS file locations). It separates data (in HDFS) from structure (in RDBMS).</li>
+                        <li><strong>Optimizer:</strong> Performs transformation operations on the execution plan (e.g., Partition Pruning, Map-Side Joins) to improve efficiency.</li>
+                        <li><strong>Execution Engine:</strong> The component that actually runs the tasks. Historically MapReduce, but modern Hive uses <strong>Apache Tez</strong> or <strong>Spark</strong> for much faster DAG execution.</li>
                     </ul>
 
                     <h2 class="section-header">3. Step-by-Step Execution Flow</h2>
                     <div class="ascii-art">
-1. [Client] submits SQL -> [Driver]
-2. [Driver] -> [Compiler] (Parse & Check)
-3. [Compiler] <-> [Metastore] (Get Schema/Location)
-4. [Compiler] -> [Optimizer] -> [Execution Plan]
-5. [Driver] -> [Execution Engine] (Run Job)
-6. [Engine] -> [Hadoop Cluster] (MapReduce/Tez Tasks on HDFS)
-7. [Engine] returns results -> [Driver] -> [Client]
+1. [Client] submits SQL query -> [Driver]
+2. [Driver] -> [Compiler] (Parse & Check Syntax)
+3. [Compiler] <-> [Metastore] (Get Schema/Location/Partitions)
+4. [Compiler] -> [Optimizer] -> [Generate Physical Execution Plan]
+5. [Driver] -> [Execution Engine] (Submit Job)
+6. [Engine] -> [Hadoop Cluster] (Run MapReduce/Tez Tasks on HDFS nodes)
+7. [Engine] reads output -> returns results -> [Driver] -> [Client]
                     </div>
 
                     <h2 class="section-header">4. Hive Metastore Deployment Modes</h2>
                     <ul class="list-disc">
-                        <li><strong>Embedded:</strong> Metastore DB (Derby) runs in the same JVM as the Driver. Only allows one user at a time. Unit testing only.</li>
-                        <li><strong>Local:</strong> Metastore service runs in Driver JVM, but connects to external DB (MySQL). Multi-user but each client needs DB config.</li>
-                        <li><strong>Remote (Recommended):</strong> Metastore runs as its own standalone server process. Clients connect via Thrift. Secure and Scalable.</li>
+                        <li><strong>Embedded Metastore:</strong> The Metastore DB (usually Derby) runs in the same JVM as the Hive Driver. Only allows one user at a time. Useful for unit testing only.</li>
+                        <li><strong>Local Metastore:</strong> The Metastore service runs in the Driver JVM, but connects to an external database (like MySQL) on a separate process. Supports multi-user, but each client needs DB credentials.</li>
+                        <li><strong>Remote Metastore (Recommended):</strong> The Metastore runs as its own standalone server process. The Hive Driver connects to this service via Thrift. This provides the best Security and Scalability for production.</li>
                     </ul>
 
                     <h2 class="section-header">5. HDFS I/O Classes</h2>
-                    <p class="content-text">Hive uses <strong>SerDe (Serializer/Deserializer)</strong> to read/write custom formats.</p>
+                    <p class="content-text">Hive does not enforce a file format. It uses <strong>SerDe (Serializer/Deserializer)</strong> to read/write custom formats.</p>
                     <ul class="list-disc">
-                        <li><strong>InputFormat:</strong> Defines how to read the file (e.g., <code>TextInputFormat</code>).</li>
-                        <li><strong>Deserializer:</strong> Converts raw data to Java Object (Row).</li>
-                        <li><strong>Serializer:</strong> Converts Java Object to raw format for writing.</li>
-                        <li><strong>OutputFormat:</strong> Defines how to write to disk.</li>
-                        <li>Examples: <code>LazySimpleSerDe</code> (CSV), <code>JsonSerDe</code>, <code>OrcSerDe</code> (Optimized Row Columnar).</li>
+                        <li><strong>InputFormat:</strong> Defines how to split and read the raw file (e.g., <code>TextInputFormat</code>, <code>OrcInputFormat</code>).</li>
+                        <li><strong>Deserializer:</strong> Takes raw data (from InputFormat) and converts it into a Java Object (Hive Row) for querying.</li>
+                        <li><strong>Serializer:</strong> Takes the Hive Row object and converts it into the raw format that the OutputFormat can write.</li>
+                        <li><strong>OutputFormat:</strong> Defines how to write the record to disk.</li>
+                        <li><em>Common SerDes:</em> <code>LazySimpleSerDe</code> (CSV/TSV), <code>JsonSerDe</code>, <code>OrcSerDe</code> (Optimized Row Columnar - high performance).</li>
                     </ul>
                 `
             },
             {
                 id: "q10", unit: "Unit III", title: "10. Hive Data Types & Joins",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q10: Hive Data Types & Joins with Examples</h1>
+                    <h1 class="section-title">Q10: Hive Data Types & Joins with Examples</h1>
 
                     <h2 class="section-header">1. Hive Data Types</h2>
-                    <p class="content-text">Hive supports rich typing, verified at query time (Schema-on-Read).</p>
+                    <p class="content-text">Hive supports a rich set of data types to handle various data formats. Unlike RDBMS, Hive uses <strong>Schema-on-Read</strong>, verifying types only when the query is executed.</p>
                     
                     <h3 class="sub-header">Primitive Types</h3>
                     <ul class="list-disc">
-                        <li><strong>Numeric:</strong> <code>TINYINT</code>, <code>INT</code>, <code>BIGINT</code> (for IDs), <code>FLOAT</code>, <code>DOUBLE</code>, <code>DECIMAL</code> (precise financial data).</li>
-                        <li><strong>String:</strong> <code>STRING</code> (No limit), <code>VARCHAR</code> (Max limit), <code>CHAR</code> (Fixed length).</li>
-                        <li><strong>Date/Time:</strong> <code>TIMESTAMP</code> (Date+Time), <code>DATE</code>.</li>
-                        <li><strong>Misc:</strong> <code>BOOLEAN</code>, <code>BINARY</code>.</li>
+                        <li><strong>Numeric:</strong> <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code> (crucial for large IDs), <code>FLOAT</code>, <code>DOUBLE</code>, <code>DECIMAL</code> (arbitrary precision for financial data).</li>
+                        <li><strong>String:</strong> <code>STRING</code> (variable length, no limit), <code>VARCHAR</code> (max limit), <code>CHAR</code> (fixed length).</li>
+                        <li><strong>Date/Time:</strong> <code>TIMESTAMP</code> (Date + Time with nanoseconds), <code>DATE</code> (Year-Month-Day).</li>
+                        <li><strong>Misc:</strong> <code>BOOLEAN</code> (True/False), <code>BINARY</code> (Byte arrays).</li>
                     </ul>
                     
                     <h3 class="sub-header">Complex Types (Collections)</h3>
-                    <p class="content-text">Crucial for handling nested JSON or log structures.</p>
+                    <p class="content-text">Hive allows storing nested data structures directly, which is key for processing JSON logs.</p>
                     <ul class="list-disc">
-                        <li><strong>ARRAY:</strong> Ordered list of same type. <code>ARRAY&lt;STRING&gt;</code>. <em>Ex: ['Java', 'SQL']</em>.</li>
-                        <li><strong>MAP:</strong> Unordered Key-Value pairs. <code>MAP&lt;STRING, INT&gt;</code>. <em>Ex: {'Sales': 100, 'Profit': 20}</em>.</li>
-                        <li><strong>STRUCT:</strong> Collection of named fields of different types. <code>STRUCT&lt;street:STRING, zip:INT&gt;</code>. <em>Ex: Address object.</em></li>
+                        <li><strong>ARRAY:</strong> An ordered collection of elements of the same type.
+                            <br>Syntax: <code>ARRAY&lt;STRING&gt;</code>. <em>Example: Skills=['Java', 'SQL', 'Hadoop']</em>.</li>
+                        <li><strong>MAP:</strong> An unordered collection of Key-Value pairs.
+                            <br>Syntax: <code>MAP&lt;STRING, INT&gt;</code>. <em>Example: Properties={'Sales': 100, 'Profit': 20}</em>.</li>
+                        <li><strong>STRUCT:</strong> A collection of named fields of potentially different types (like a C struct or Object).
+                            <br>Syntax: <code>STRUCT&lt;street:STRING, zip:INT&gt;</code>. <em>Example: Address object.</em></li>
                     </ul>
 
                     <h2 class="section-header">2. Hive Joins</h2>
-                    <p class="content-text">Hive supports SQL standard joins. Since data is distributed, join keys are used to "Shuffle" matching records to the same Reducer.</p>
+                    <p class="content-text">Hive supports standard SQL joins. Since data is distributed, join keys are used to "Shuffle" matching records from both tables to the same Reducer instance.</p>
                     
                     <h3 class="sub-header">Join Types</h3>
                     <ul class="list-disc">
-                        <li><strong>Inner Join (Natural):</strong> Returns rows that have matching values in both tables. Discards unmatched rows.</li>
-                        <li><strong>Left Outer Join:</strong> Returns all rows from the Left table, and matched rows from the Right. If no match, Right columns are NULL.</li>
-                        <li><strong>Right Outer Join:</strong> Returns all rows from the Right table, and matched rows from the Left. If no match, Left columns are NULL.</li>
-                        <li><strong>Full Outer Join:</strong> Returns all rows from both tables. Unmatched sides contain NULLs.</li>
+                        <li><strong>Inner Join (Natural Join):</strong> Returns only the rows where there is a strict match in <em>both</em> tables based on the join key. Unmatched rows are discarded.</li>
+                        <li><strong>Left Outer Join:</strong> Returns <em>all</em> rows from the Left table, and matched rows from the Right table. If no match is found, Right table columns are filled with NULL.</li>
+                        <li><strong>Right Outer Join:</strong> Returns <em>all</em> rows from the Right table, and matched rows from the Left table. If no match is found, Left table columns are filled with NULL.</li>
+                        <li><strong>Full Outer Join:</strong> Returns <em>all</em> rows from both tables. Where matches exist, they align; where they don't, NULLs are used on the missing side.</li>
                     </ul>
 
                     <h2 class="section-header">3. Visualization & Syntax</h2>
                     <div class="ascii-art">
    [INNER JOIN]          [LEFT JOIN]           [FULL JOIN]
     (Intersection)      (Left + Match)        (Union of All)
+   +------------+       +------------+        +------------+
+   | Matches    |       | Left Rows  |        | Left Rows  |
+   | Only       |       | + Matches  |        | + Matches  |
+   +------------+       | (Right=Null)|       | + Right Rows|
+                        +------------+        +------------+
     
-Syntax:
-SELECT a.name, b.dept 
+Syntax Example:
+SELECT a.emp_name, b.dept_name 
 FROM employees a 
-JOIN departments b 
+LEFT OUTER JOIN departments b 
 ON a.dept_id = b.id;
                     </div>
                 `
@@ -596,43 +899,56 @@ ON a.dept_id = b.id;
             {
                 id: "q11", unit: "Unit III", title: "11. Hive UDF Procedure",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q11: Writing Hive User Defined Functions (UDFs)</h1>
+                    <h1 class="section-title">Q11: Writing Hive User Defined Functions (UDFs)</h1>
 
                     <h2 class="section-header">1. Introduction & Types</h2>
-                    <p class="content-text">UDFs allow developers to extend Hive's capability with custom Java code to handle logic that SQL cannot (e.g., complex string parsing, encryption).</p>
+                    <p class="content-text">UDFs allow developers to extend Hive's native query capabilities with custom Java code. This is essential for domain-specific logic (e.g., complex string parsing, decryption, geocoding) that standard SQL functions cannot handle.</p>
                     <ul class="list-disc">
-                        <li><strong>UDF (User Defined Function):</strong> One-to-One. Takes one row, returns one value (e.g., <code>UpperCase()</code>).</li>
-                        <li><strong>UDAF (User Defined Aggregation Function):</strong> Many-to-One. Takes N rows, returns one value (e.g., <code>Sum()</code>).</li>
-                        <li><strong>UDTF (User Defined Table Generating Function):</strong> One-to-Many. Takes one row, returns multiple rows (e.g., <code>Explode()</code> an array).</li>
+                        <li><strong>UDF (User Defined Function):</strong> One-to-One mapping. Takes a single row/value as input and returns a single value (e.g., <code>UpperCase()</code>, <code>ParseUrl()</code>).</li>
+                        <li><strong>UDAF (User Defined Aggregation Function):</strong> Many-to-One mapping. Takes N rows (a group) and returns a single value (e.g., <code>Sum()</code>, <code>Average()</code>).</li>
+                        <li><strong>UDTF (User Defined Table Generating Function):</strong> One-to-Many mapping. Takes a single row and returns multiple rows (e.g., <code>Explode()</code> an array into separate rows).</li>
                     </ul>
 
-                    <h2 class="section-header">2. Development Procedure</h2>
+                    <h2 class="section-header">2. Development Procedure (Step-by-Step)</h2>
                     <ol class="list-decimal">
-                        <li><strong>Setup Environment:</strong> Create a Java project. Include <code>hive-exec.jar</code> and <code>hadoop-common.jar</code> in classpath.</li>
-                        <li><strong>Create Class:</strong> Extend the base class <code>org.apache.hadoop.hive.ql.exec.UDF</code>.</li>
-                        <li><strong>Implement evaluate():</strong> You must implement one or more <code>evaluate()</code> methods. Hive uses reflection to match the arguments. <em>Best Practice: Use Hadoop <code>Text</code> types instead of Java <code>String</code> for efficiency.</em></li>
-                        <li><strong>Compile & Package:</strong> Compile the Java code and export it as a JAR file (e.g., <code>my_udfs.jar</code>).</li>
-                        <li><strong>Deploy to Hive:</strong>
-                            <ul class="list-disc ml-6">
-                                <li>Open Hive Shell.</li>
-                                <li>Load JAR: <code>ADD JAR /path/to/my_udfs.jar;</code></li>
-                                <li>Register Function: <code>CREATE TEMPORARY FUNCTION myUpper AS 'com.example.ToUpper';</code></li>
+                        <li><strong>Setup Development Environment:</strong> Create a Java project (Maven/Eclipse). Include <code>hive-exec.jar</code> and <code>hadoop-common.jar</code> in your classpath dependencies.</li>
+                        <li><strong>Create Java Class:</strong> Create a class that extends the base class <code>org.apache.hadoop.hive.ql.exec.UDF</code>.</li>
+                        <li><strong>Implement evaluate():</strong> You must implement one or more methods named <code>evaluate()</code>.
+                            <ul class="list-disc ml-6 text-sm">
+                                <li>Hive uses reflection to find the method that matches the argument types in the query.</li>
+                                <li><em>Best Practice:</em> Use Hadoop <code>Text</code> types instead of Java <code>String</code> for memory efficiency.</li>
                             </ul>
                         </li>
-                        <li><strong>Usage:</strong> Use it in SQL: <code>SELECT myUpper(name) FROM employees;</code></li>
+                        <li><strong>Compile & Package:</strong> Compile the Java code and export it as a JAR file (e.g., <code>my_udfs.jar</code>).</li>
+                        <li><strong>Deploy to Hive Session:</strong>
+                            <ul class="list-disc ml-6 text-sm">
+                                <li>Open Hive CLI or Beeline.</li>
+                                <li>Add the JAR to the classpath: <code>ADD JAR /path/to/my_udfs.jar;</code></li>
+                            </ul>
+                        </li>
+                        <li><strong>Register Function:</strong> Create a temporary function name pointing to your class: <code>CREATE TEMPORARY FUNCTION myUpper AS 'com.example.hive.ToUpper';</code></li>
+                        <li><strong>Usage:</strong> Use it in your SQL queries just like a built-in function: <code>SELECT myUpper(emp_name) FROM employees;</code></li>
                     </ol>
 
                     <h2 class="section-header">3. Code Skeleton Example</h2>
                     <div class="ascii-art">
-package com.example;
+package com.example.hive;
+
+// Import Hive and Hadoop libraries
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.Text;
 
 public class ToUpper extends UDF {
-    // Method must be named 'evaluate'
+    
+    // The method must be named 'evaluate'
+    // Input: Text (Hadoop String), Output: Text
     public Text evaluate(Text input) {
+        // Handle nulls to prevent crashes
         if(input == null) return null;
-        return new Text(input.toString().toUpperCase());
+        
+        // Convert, Transform, Wrap back
+        String str = input.toString().toUpperCase();
+        return new Text(str);
     }
 }
                     </div>
@@ -641,89 +957,103 @@ public class ToUpper extends UDF {
             {
                 id: "q12", unit: "Unit III", title: "12. Pig Data Types & Script",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q12: Pig Data Types, Operators & Word Count</h1>
+                    <h1 class="section-title">Q12: Pig Data Types, Operators & Word Count</h1>
 
                     <h2 class="section-header">1. Pig Latin Data Types</h2>
-                    <p class="content-text">Pig provides a rich nested data model suitable for processing semi-structured data.</p>
+                    <p class="content-text">Apache Pig provides a rich, nested data model that is much more flexible than flat SQL tables, making it ideal for processing semi-structured data like logs.</p>
                     <ul class="list-disc">
-                        <li><strong>Scalar (Atomic):</strong> <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>chararray</code> (string), <code>bytearray</code> (blob), <code>datetime</code>.</li>
-                        <li><strong>Tuple (Ordered):</strong> Ordered set of fields, like a row. Enclosed in <code>()</code>. <em>Ex: ('John', 25)</em>.</li>
-                        <li><strong>Bag (Unordered Collection):</strong> Collection of tuples. Can contain duplicates. Enclosed in <code>{}</code>. <em>Ex: {('John', 25), ('Alice', 30)}</em>.</li>
-                        <li><strong>Map (Key-Value):</strong> Enclosed in <code>[]</code>. Keys are chararrays. <em>Ex: ['name'#'John']</em>.</li>
+                        <li><strong>Scalar (Atomic) Types:</strong> <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code>, <code>chararray</code> (string), <code>bytearray</code> (binary blob), <code>datetime</code>, <code>boolean</code>.</li>
+                        <li><strong>Complex Types:</strong>
+                            <ul class="ml-6 mt-1 text-sm">
+                                <li><strong>Tuple:</strong> An ordered set of fields (like a row). Enclosed in <code>()</code>. <em>Ex: ('John', 25)</em>.</li>
+                                <li><strong>Bag:</strong> An unordered collection of tuples. Can contain duplicates. Enclosed in <code>{}</code>. <em>Ex: {('John', 25), ('Alice', 30)}</em>. This is key for grouping data.</li>
+                                <li><strong>Map:</strong> A set of Key-Value pairs. Enclosed in <code>[]</code>. Keys must be chararrays. <em>Ex: ['name'#'John', 'age'#25]</em>.</li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <h2 class="section-header">2. Relational Operators</h2>
-                    <p class="content-text">Pig operates on Relations (Bags of Tuples). Operators transform one relation into another.</p>
+                    <p class="content-text">Pig operates on <strong>Relations</strong> (Bags of Tuples). Operators transform one relation into another (Data Flow language).</p>
                     <ul class="list-disc">
-                        <li><code>LOAD</code>: Read data from disk.</li>
-                        <li><code>STORE</code>: Write data to disk.</li>
-                        <li><code>FILTER</code>: Select rows based on condition.</li>
-                        <li><code>FOREACH...GENERATE</code>: Iterate columns/transform data (Projection).</li>
-                        <li><code>GROUP</code>: Group tuples by key (Result is a tuple with the key and a Bag of grouped items).</li>
-                        <li><code>JOIN</code>: Join two relations.</li>
-                        <li><code>ORDER BY</code>: Sort data.</li>
-                        <li><code>FLATTEN</code>: Un-nest a bag or tuple into separate rows.</li>
+                        <li><code>LOAD</code>: Reads data from the file system (HDFS).</li>
+                        <li><code>STORE</code>: Writes data to the file system.</li>
+                        <li><code>FILTER</code>: Selects tuples based on a condition (like SQL WHERE).</li>
+                        <li><code>FOREACH...GENERATE</code>: Iterates over tuples to transform columns (Projection).</li>
+                        <li><code>GROUP</code>: Groups tuples with the same key. The result is a tuple containing the key and a Bag of all grouped items.</li>
+                        <li><code>JOIN</code>: Joins two relations (Inner, Left, Right, Full).</li>
+                        <li><code>ORDER BY</code>: Sorts a relation based on one or more fields.</li>
+                        <li><code>FLATTEN</code>: Removes a level of nesting (turns a Bag into separate rows).</li>
                     </ul>
 
                     <h2 class="section-header">3. Complete Word Count Script</h2>
+                    <p class="content-text">This script demonstrates the Load-Transform-Group-Aggregate-Store pattern.</p>
                     <div class="ascii-art">
 -- 1. Load Data from HDFS
-lines = LOAD 'input.txt' AS (line:chararray);
+-- Each line is loaded as a single chararray field named 'line'
+A = LOAD '/user/input.txt' AS (line:chararray);
 
--- 2. Transform: Split line into words and flatten the bag into rows
--- TOKENIZE creates a bag {('Big'), ('Data')}
--- FLATTEN turns it into separate rows
-words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) AS word;
+-- 2. Transform: Tokenize and Flatten
+-- TOKENIZE splits the string "Big Data" into a bag {('Big'), ('Data')}
+-- FLATTEN un-nests the bag into separate rows
+B = FOREACH A GENERATE FLATTEN(TOKENIZE(line)) AS word;
 
 -- 3. Group by Word (Map phase equivalent)
--- Result: (word, {(word), (word)...})
-grouped_words = GROUP words BY word;
+-- Result schema: (group:chararray, B:bag{word:chararray})
+-- Ex: (Big, {(Big), (Big)})
+C = GROUP B BY word;
 
 -- 4. Aggregation (Reduce phase equivalent)
--- Count the number of tuples in the bag
-counts = FOREACH grouped_words GENERATE group, COUNT(words);
+-- 'group' keyword refers to the key (the word)
+-- COUNT counts the number of tuples in the bag 'B'
+D = FOREACH C GENERATE group, COUNT(B);
 
 -- 5. Store Result
-STORE counts INTO 'output_dir';
+STORE D INTO '/user/output_dir';
                     </div>
                 `
             },
             {
                 id: "q13", unit: "Unit III", title: "13. Mapper, Reducer & Combiner",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q13: Mapper, Reducer & Combiner Explained</h1>
+                    <h1 class="section-title">Q13: Mapper, Reducer & Combiner Explained</h1>
 
-                    <h2 class="section-header">1. Mapper Component</h2>
+                    <h2 class="section-header">1. The Mapper Component</h2>
                     <ul class="list-disc">
-                        <li><strong>Role:</strong> The first phase. It processes input splits (blocks) independently.</li>
-                        <li><strong>Input/Output:</strong> Reads <code>(Key, Value)</code> pairs and emits intermediate <code>(Key, Value)</code> pairs.</li>
+                        <li><strong>Role:</strong> The first phase of processing. It processes <strong>Input Splits</strong> (logical blocks of data) independently.</li>
+                        <li><strong>Function:</strong> Reads input <code>(Key, Value)</code> pairs and applies logic (filtering, parsing) to emit intermediate <code>(Key, Value)</code> pairs.</li>
                         <li><strong>Cardinality:</strong> One-to-Many. For 1 input record, it can emit 0, 1, or N pairs.</li>
-                        <li><strong>Location:</strong> Runs on the DataNode where the data exists (Data Locality). Output is written to the <strong>Local Disk</strong> (not HDFS).</li>
+                        <li><strong>Location:</strong> Runs on the DataNode where the data exists (Data Locality). Output is written to the <strong>Local Disk</strong> (not HDFS) to avoid replication overhead for temporary data.</li>
                     </ul>
 
-                    <h2 class="section-header">2. Reducer Component</h2>
+                    <h2 class="section-header">2. The Reducer Component</h2>
                     <ul class="list-disc">
-                        <li><strong>Role:</strong> The aggregation phase. It summarizes data.</li>
-                        <li><strong>Input:</strong> Receives a Key and an Iterable List of Values <code>(Key, [v1, v2, v3...])</code>. This grouping happens during the Shuffle & Sort phase.</li>
-                        <li><strong>Processing:</strong> Iterates through values to calculate Sum, Max, Average, etc.</li>
-                        <li><strong>Location:</strong> Can run on any node. Output is written to <strong>HDFS</strong> (replicated).</li>
+                        <li><strong>Role:</strong> The aggregation phase. It summarizes or consolidates data.</li>
+                        <li><strong>Input:</strong> Receives a Key and an Iterable List of Values <code>(Key, [v1, v2, v3...])</code>. This grouping happens during the "Shuffle & Sort" phase over the network.</li>
+                        <li><strong>Processing:</strong> Iterates through the list of values to perform an aggregation operation (Sum, Max, Average, Concatenate).</li>
+                        <li><strong>Location:</strong> Can run on any node. The final output is written to <strong>HDFS</strong> (replicated for safety).</li>
                     </ul>
 
-                    <h2 class="section-header">3. Combiner (The "Mini-Reducer")</h2>
-                    <p class="content-text"><strong>Purpose: Optimization.</strong> In a standard flow, Mappers might emit <code>(The, 1)</code> thousands of times. Sending all these over the network to the Reducer clogs bandwidth.</p>
+                    <h2 class="section-header">3. The Combiner (The "Mini-Reducer")</h2>
+                    <p class="content-text"><strong>Purpose: Optimization / Bandwidth Reduction.</strong><br>In a standard flow, Mappers might emit <code>(The, 1)</code> thousands of times. Sending all these pairs over the network to the Reducer causes congestion.</p>
                     <ul class="list-disc">
-                        <li><strong>Role:</strong> Runs locally on the Map node <em>after</em> the Map task but <em>before</em> Shuffle.</li>
-                        <li><strong>Function:</strong> It performs a local reduction. E.g., converts 1000 instances of <code>(The, 1)</code> into a single <code>(The, 1000)</code> pair.</li>
-                        <li><strong>Constraint:</strong> Can only be used if the function is <strong>Commutative and Associative</strong> (e.g., Sum, Max). Cannot use for Average (Average of averages is wrong).</li>
+                        <li><strong>Role:</strong> Runs locally on the Map node <em>after</em> the Map task but <em>before</em> the Shuffle phase.</li>
+                        <li><strong>Function:</strong> It performs a local reduction. E.g., converts 1000 instances of <code>(The, 1)</code> into a single pair <code>(The, 1000)</code>. This drastically reduces the amount of data sent over the network.</li>
+                        <li><strong>Constraint:</strong> Can only be used if the aggregation function is <strong>Commutative and Associative</strong> (e.g., Sum, Max, Min). It cannot be used for operations like Average (because Average of averages is mathematically incorrect).</li>
                     </ul>
 
                     <h2 class="section-header">4. Comparison Table</h2>
-                    <table>
-                        <tr><th>Component</th><th>Input</th><th>Output</th><th>Run Location</th><th>Mandatory?</th></tr>
-                        <tr><td><strong>Mapper</strong></td><td>Input Split</td><td>Intermediate K-V</td><td>Local DataNode</td><td>Yes</td></tr>
-                        <tr><td><strong>Combiner</strong></td><td>Map Output</td><td>Aggregated K-V</td><td>Local DataNode</td><td>No (Optional)</td></tr>
-                        <tr><td><strong>Reducer</strong></td><td>Grouped K-V list</td><td>Final Result</td><td>Any Node</td><td>Yes (Usually)</td></tr>
-                    </table>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>Component</th><th>Input</th><th>Output</th><th>Run Location</th><th>Mandatory?</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Mapper</strong></td><td>Input Split</td><td>Intermediate K-V</td><td>Local DataNode</td><td>Yes</td></tr>
+                                <tr><td><strong>Combiner</strong></td><td>Map Output</td><td>Aggregated K-V</td><td>Local DataNode</td><td>No (Optional Optimization)</td></tr>
+                                <tr><td><strong>Reducer</strong></td><td>Grouped K-V list</td><td>Final Result</td><td>Any Node</td><td>Yes (Usually)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `
             },
 
@@ -731,42 +1061,47 @@ STORE counts INTO 'output_dir';
             {
                 id: "q14", unit: "Unit IV", title: "14. NoSQL Definition & Comparison",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q14: NoSQL Definition, Characteristics & RDBMS Comparison</h1>
+                    <h1 class="section-title">Q14: NoSQL Definition, Characteristics & RDBMS Comparison</h1>
 
                     <h2 class="section-header">1. Definition & Need</h2>
-                    <p class="content-text">NoSQL ("Not Only SQL") represents a broad class of database management systems that differ from the relational model. They arose from the need to handle the "3 V's" of Big Data where RDBMS failed (specifically scaling to petabytes and handling unstructured data).</p>
+                    <p class="content-text">NoSQL (often interpreted as "Not Only SQL") represents a broad class of database management systems that differ from the classic relational model. They arose from the specific need to handle the "3 V's" of Big Data where RDBMS failed—specifically the need to scale horizontally to petabytes and handle unstructured data like social media feeds and logs.</p>
 
                     <h2 class="section-header">2. Key Characteristics</h2>
                     <ul class="list-disc">
-                        <li><strong>Schema-less:</strong> No predefined table structure. You can insert data with varying fields on the fly (Schema-on-Write).</li>
-                        <li><strong>Horizontal Scalability (Sharding):</strong> Designed to scale out across cheap commodity servers by partitioning data.</li>
-                        <li><strong>BASE Consistency:</strong>
-                            <ul class="list-circle ml-4">
-                                <li><strong>B</strong>asically <strong>A</strong>vailable: System guarantees availability.</li>
-                                <li><strong>S</strong>oft State: State may change over time even without input (due to replication).</li>
+                        <li><strong>Schema-less (Dynamic Schema):</strong> No predefined table structure is required. You can insert data with varying fields on the fly (Schema-on-Write). This supports "Variety".</li>
+                        <li><strong>Horizontal Scalability (Sharding):</strong> Designed to scale out across hundreds of cheap commodity servers by automatically partitioning (sharding) data. RDBMS usually scales vertically (bigger expensive server).</li>
+                        <li><strong>BASE Consistency Model:</strong> Unlike the strict ACID model of RDBMS, NoSQL follows BASE:
+                            <ul class="list-circle ml-4 mt-1 text-sm">
+                                <li><strong>B</strong>asically <strong>A</strong>vailable: System guarantees availability (it works).</li>
+                                <li><strong>S</strong>oft State: State of the system may change over time even without input (due to replication).</li>
                                 <li><strong>E</strong>ventual Consistency: System will become consistent over time (not immediate).</li>
                             </ul>
                         </li>
                     </ul>
 
                     <h2 class="section-header">3. The CAP Theorem</h2>
-                    <p class="content-text">In a distributed system, you can only guarantee 2 of the 3 properties:</p>
+                    <p class="content-text">In a distributed computer system, you can only support two of the following three guarantees:</p>
                     <ol class="list-decimal">
-                        <li><strong>Consistency:</strong> Everyone sees the same data at the same time.</li>
-                        <li><strong>Availability:</strong> Every request gets a response (no errors).</li>
-                        <li><strong>Partition Tolerance:</strong> System works even if network messages are dropped.</li>
+                        <li><strong>Consistency (C):</strong> Every read receives the most recent write or an error.</li>
+                        <li><strong>Availability (A):</strong> Every request receives a (non-error) response, without the guarantee that it contains the most recent write.</li>
+                        <li><strong>Partition Tolerance (P):</strong> The system continues to operate despite an arbitrary number of messages being dropped by the network.</li>
                     </ol>
-                    <p class="content-text"><em>Since P is mandatory in distributed networks, NoSQL DBs choose either AP (Cassandra - always writeable) or CP (MongoDB - consistent but may block writes).</em></p>
+                    <p class="content-text"><em>Crucial Note:</em> Since network partitions (P) are unavoidable in distributed systems, NoSQL databases must choose between <strong>AP</strong> (Availability - e.g., Cassandra, DynamoDB) or <strong>CP</strong> (Consistency - e.g., MongoDB, HBase).</p>
 
                     <h2 class="section-header">4. Comparison: NoSQL vs RDBMS</h2>
-                    <div class="overflow-x-auto">
+                    <div class="table-container">
                         <table>
-                            <tr><th>Feature</th><th>RDBMS</th><th>NoSQL</th></tr>
-                            <tr><td><strong>Scalability</strong></td><td>Vertical (Expensive, Finite)</td><td>Horizontal (Cheap, Infinite)</td></tr>
-                            <tr><td><strong>Data Model</strong></td><td>Tables/Relations</td><td>Key-Value, Document, Graph, Columnar</td></tr>
-                            <tr><td><strong>Schema</strong></td><td>Rigid</td><td>Flexible</td></tr>
-                            <tr><td><strong>Transactions</strong></td><td>ACID (Strong)</td><td>BASE (Eventual)</td></tr>
-                            <tr><td><strong>Relationships</strong></td><td>Complex Joins</td><td>Denormalized / Aggregates</td></tr>
+                            <thead>
+                                <tr><th>Feature</th><th>RDBMS (Relational)</th><th>NoSQL (Non-Relational)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Scalability</strong></td><td>Vertical (Expensive, Finite limits)</td><td>Horizontal (Cheap, Infinite)</td></tr>
+                                <tr><td><strong>Data Model</strong></td><td>Tables, Rows, Columns</td><td>Key-Value, Document, Graph, Columnar</td></tr>
+                                <tr><td><strong>Schema</strong></td><td>Rigid (Defined upfront)</td><td>Flexible (Dynamic)</td></tr>
+                                <tr><td><strong>Transactions</strong></td><td>ACID (Strong Consistency)</td><td>BASE (Eventual Consistency)</td></tr>
+                                <tr><td><strong>Relationships</strong></td><td>Complex Joins (Foreign Keys)</td><td>Denormalized / Aggregates / Graph pointers</td></tr>
+                                <tr><td><strong>Use Case</strong></td><td>Transactions, Banking, ERP</td><td>Big Data, Real-time, IoT, Content</td></tr>
+                            </tbody>
                         </table>
                     </div>
                 `
@@ -774,90 +1109,94 @@ STORE counts INTO 'output_dir';
             {
                 id: "q15", unit: "Unit IV", title: "15. Types of NoSQL",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q15: Types of NoSQL Databases</h1>
+                    <h1 class="section-title">Q15: Types of NoSQL Databases</h1>
 
                     <h2 class="section-header">1. Key-Value Stores</h2>
-                    <p class="content-text">The simplest model. Acts like a Hash Map. The value is opaque (blob).</p>
+                    <p class="content-text">The simplest NoSQL model. It acts like a massive Hash Map or Dictionary. The "Value" is opaque to the database (it's just a blob).</p>
                     <ul class="list-disc">
-                        <li><strong>Pros:</strong> Extremely fast (O(1) lookup), simple API.</li>
-                        <li><strong>Cons:</strong> Cannot query based on value content.</li>
-                        <li><strong>Use Cases:</strong> Caching (Session data), Shopping Carts, Real-time counters.</li>
+                        <li><strong>Pros:</strong> Extremely fast (O(1) lookup), simple API, highly scalable.</li>
+                        <li><strong>Cons:</strong> Cannot query based on the content of the value.</li>
+                        <li><strong>Use Cases:</strong> Caching, Session Management (Shopping Carts), Real-time counters/Leaderboards.</li>
                         <li><strong>Examples:</strong> Redis, Amazon DynamoDB, Riak.</li>
                     </ul>
 
                     <h2 class="section-header">2. Document Databases</h2>
-                    <p class="content-text">Stores data as semi-structured documents (JSON, XML, BSON). The DB understands the internal structure.</p>
+                    <p class="content-text">Extends Key-Value by storing data as semi-structured documents (JSON, XML, BSON). Crucially, the database <em>understands</em> the internal structure and can index fields inside the document.</p>
                     <ul class="list-disc">
-                        <li><strong>Pros:</strong> Flexible schema, maps to objects in code, supports secondary indexing.</li>
-                        <li><strong>Use Cases:</strong> Content Management (CMS), Product Catalogs, User Profiles.</li>
+                        <li><strong>Pros:</strong> Flexible schema, maps directly to objects in code, supports powerful secondary indexing.</li>
+                        <li><strong>Use Cases:</strong> Content Management Systems (CMS), E-commerce Product Catalogs (varying attributes), User Profiles.</li>
                         <li><strong>Examples:</strong> MongoDB, CouchDB.</li>
                     </ul>
 
                     <h2 class="section-header">3. Column-Family Stores (Wide-Column)</h2>
-                    <p class="content-text">Stores data by columns rather than rows. Optimized for massive write throughput and sparse data.</p>
+                    <p class="content-text">Stores data by columns rather than rows. A row can have millions of columns. Optimized for massive write throughput and storing sparse data.</p>
                     <ul class="list-disc">
-                        <li><strong>Pros:</strong> Excellent compression, fast writes, linear scalability.</li>
-                        <li><strong>Use Cases:</strong> IoT sensor data, Time-series logs, Messaging apps.</li>
+                        <li><strong>Pros:</strong> Excellent compression (nulls take no space), extremely fast writes, linear scalability.</li>
+                        <li><strong>Use Cases:</strong> IoT sensor data, Time-series logs, Messaging apps (Facebook Messenger).</li>
                         <li><strong>Examples:</strong> Apache Cassandra, Apache HBase.</li>
                     </ul>
 
                     <h2 class="section-header">4. Graph Databases</h2>
-                    <p class="content-text">Stores entities as Nodes and relationships as Edges. Relationships are "first-class citizens".</p>
+                    <p class="content-text">Stores entities as <strong>Nodes</strong> and relationships as <strong>Edges</strong>. Relationships are "first-class citizens" and are stored as direct pointers, not calculated via joins.</p>
                     <ul class="list-disc">
-                        <li><strong>Pros:</strong> Fast traversal of complex relationships (Friends of Friends). No expensive Joins.</li>
-                        <li><strong>Use Cases:</strong> Social Networks, Recommendation Engines, Fraud Detection rings.</li>
+                        <li><strong>Pros:</strong> Fast traversal of complex relationships (Friends of Friends). No expensive Joins involved.</li>
+                        <li><strong>Use Cases:</strong> Social Networks, Recommendation Engines, Fraud Detection rings, Network topology.</li>
                         <li><strong>Examples:</strong> Neo4j, Amazon Neptune.</li>
                     </ul>
 
                     <h2 class="section-header">5. Summary Table</h2>
-                    <table>
-                        <tr><th>Type</th><th>Data Model</th><th>Best For</th></tr>
-                        <tr><td>Key-Value</td><td>Key + Blob</td><td>Speed & Caching</td></tr>
-                        <tr><td>Document</td><td>Key + JSON</td><td>Variety & Flexibility</td></tr>
-                        <tr><td>Columnar</td><td>Row Key + Columns</td><td>Volume & Velocity (Writes)</td></tr>
-                        <tr><td>Graph</td><td>Nodes + Edges</td><td>Complexity & Relationships</td></tr>
-                    </table>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Type</th><th>Data Model</th><th>Best For</th></tr></thead>
+                            <tbody>
+                                <tr><td>Key-Value</td><td>Key + Blob</td><td>Speed & Caching</td></tr>
+                                <tr><td>Document</td><td>Key + JSON</td><td>Variety & Flexibility</td></tr>
+                                <tr><td>Columnar</td><td>Row Key + Columns</td><td>Volume & Velocity (Writes)</td></tr>
+                                <tr><td>Graph</td><td>Nodes + Edges</td><td>Complexity & Relationships</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `
             },
             {
                 id: "q16", unit: "Unit IV", title: "16. Industry Applications",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q16: NoSQL Applications in Industry</h1>
+                    <h1 class="section-title">Q16: NoSQL Applications in Industry</h1>
 
                     <h2 class="section-header">1. E-Commerce & Retail</h2>
-                    <p class="content-text"><strong>Problem:</strong> Product catalogs are highly variable (Shirts have size/color; Laptops have RAM/CPU). SQL requires many NULL columns.</p>
-                    <p class="content-text"><strong>Solution:</strong> <strong>Document Stores (MongoDB)</strong> handle variable schemas easily. <strong>Key-Value (Redis)</strong> handles high-speed shopping cart sessions during Black Friday sales.</p>
+                    <p class="content-text"><strong>Problem:</strong> Product catalogs are highly variable. A shirt has size/color; a laptop has RAM/CPU. Storing this in SQL requires massive tables with many NULL columns.</p>
+                    <p class="content-text"><strong>Solution:</strong> <strong>Document Stores (MongoDB)</strong> allow "Schema-on-write," handling variable attributes easily. <strong>Key-Value (Redis)</strong> handles high-speed shopping cart sessions during peak events like Black Friday without locking database rows.</p>
 
                     <h2 class="section-header">2. Social Media</h2>
-                    <p class="content-text"><strong>Problem:</strong> Mapping "Who follows whom" involves massive self-joins in SQL which is slow. Activity feeds require huge write throughput.</p>
-                    <p class="content-text"><strong>Solution:</strong> <strong>Graph DBs (Neo4j)</strong> make traversing relationships instant ("People you may know"). <strong>Columnar DBs (Cassandra)</strong> ingest millions of likes/posts per second (used by Instagram).</p>
+                    <p class="content-text"><strong>Problem:</strong> Mapping complex relationships ("Who follows whom") involves massive self-joins in SQL which is exponentially slow. Activity feeds require huge write throughput.</p>
+                    <p class="content-text"><strong>Solution:</strong> <strong>Graph DBs (Neo4j)</strong> make traversing relationships instant ("People you may know"). <strong>Columnar DBs (Cassandra)</strong> ingest millions of likes/posts per second reliably across global regions (used by Instagram).</p>
 
                     <h2 class="section-header">3. Financial Services (FinTech)</h2>
-                    <p class="content-text"><strong>Problem:</strong> Real-time fraud detection requires analyzing patterns in milliseconds.</p>
-                    <p class="content-text"><strong>Solution:</strong> <strong>Graph DBs</strong> detect circular money laundering rings. <strong>Redis</strong> provides sub-millisecond latency to score a transaction before the swipe completes.</p>
+                    <p class="content-text"><strong>Problem:</strong> Real-time fraud detection requires analyzing transaction patterns against history in milliseconds to block a swipe.</p>
+                    <p class="content-text"><strong>Solution:</strong> <strong>Graph DBs</strong> detect circular money laundering rings. <strong>Redis</strong> provides sub-millisecond latency to score a transaction against user history before the transaction completes.</p>
 
                     <h2 class="section-header">4. Internet of Things (IoT) & Telecom</h2>
-                    <p class="content-text"><strong>Problem:</strong> Smart cars/meters generate billions of timestamped logs daily.</p>
-                    <p class="content-text"><strong>Solution:</strong> <strong>Column-Family (HBase/Cassandra)</strong> are optimized for time-series data and high write velocity, storing data on disk sequentially.</p>
+                    <p class="content-text"><strong>Problem:</strong> Smart cars, meters, and cell towers generate billions of timestamped logs daily. SQL indexing slows down under this heavy write load.</p>
+                    <p class="content-text"><strong>Solution:</strong> <strong>Column-Family (HBase/Cassandra)</strong> use Log-Structured Merge trees to append data sequentially, allowing them to ingest millions of writes per second on commodity hardware.</p>
 
                     <h2 class="section-header">5. Gaming</h2>
-                    <p class="content-text"><strong>Problem:</strong> Real-time leaderboards and inventory state for millions of concurrent players.</p>
-                    <p class="content-text"><strong>Solution:</strong> <strong>Redis</strong> atomic counters enable real-time scoring. <strong>NoSQL</strong> scales elastically to handle game launch spikes.</p>
+                    <p class="content-text"><strong>Problem:</strong> Modern multiplayer games need real-time leaderboards, inventory state, and chat for millions of concurrent players.</p>
+                    <p class="content-text"><strong>Solution:</strong> <strong>Redis</strong> sorted sets allow for atomic increment operations, enabling real-time scoring. <strong>NoSQL</strong> scales elastically to handle the massive load on game launch days.</p>
                 `
             },
             {
                 id: "q17", unit: "Unit IV", title: "17. MongoDB Sharding",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q17: MongoDB Sharding Process & Significance</h1>
+                    <h1 class="section-title">Q17: MongoDB Sharding Process & Significance</h1>
 
                     <h2 class="section-header">1. What is Sharding?</h2>
-                    <p class="content-text">Sharding is the process of storing data records across multiple machines. It is MongoDB's approach to meeting the demands of data growth (Horizontal Scaling). It addresses limitations in storage capacity and I/O throughput of single servers.</p>
+                    <p class="content-text">Sharding is the process of distributing data records across multiple machines. It is MongoDB's approach to meeting the demands of data growth (Horizontal Scaling). It addresses limitations in storage capacity and I/O throughput of single servers by ensuring no single machine holds all the data.</p>
 
                     <h2 class="section-header">2. Sharding Architecture Components</h2>
                     <ul class="list-disc">
-                        <li><strong>Shards:</strong> The storage units. Each shard holds a subset of the data. In production, each shard is a Replica Set (for high availability).</li>
-                        <li><strong>Config Servers:</strong> The brain. They store the cluster's metadata (mapping of which data chunk lives on which shard).</li>
-                        <li><strong>mongos (Query Router):</strong> The interface. Clients connect to mongos, not shards. It routes queries to the correct shard based on metadata from config servers.</li>
+                        <li><strong>Shards:</strong> The storage units. Each shard holds a subset of the total data. In production, each shard is a <strong>Replica Set</strong> (for high availability and failover).</li>
+                        <li><strong>Config Servers:</strong> The brain of the cluster. They store the metadata and configuration settings (mapping of which data chunk lives on which shard).</li>
+                        <li><strong>mongos (Query Router):</strong> The interface. Clients connect to <code>mongos</code>, not shards directly. It looks up metadata from Config Servers and routes queries to the specific shard(s) holding the requested data.</li>
                     </ul>
 
                     <h2 class="section-header">3. Architecture Diagram</h2>
@@ -870,21 +1209,26 @@ STORE counts INTO 'output_dir';
                    +---------------------+---------------------+
                    |                     |                     |
               [ Shard 1 ]           [ Shard 2 ]           [ Shard 3 ]
-             (Data A-M)            (Data N-Z)            (Future)
+             (Data A-M)            (Data N-Z)            (Future Data)
+             (Replica Set)         (Replica Set)         (Replica Set)
                     </div>
 
                     <h2 class="section-header">4. The Sharding Process</h2>
                     <ol class="list-decimal">
-                        <li><strong>Enable Sharding:</strong> Must be enabled at the database level first.</li>
-                        <li><strong>Choose Shard Key:</strong> Select a field (e.g., <code>customer_id</code>) to partition data. This is critical.</li>
-                        <li><strong>Chunk Creation:</strong> MongoDB splits data into 64MB logical blocks called "Chunks" based on key ranges.</li>
-                        <li><strong>Balancing:</strong> A background process ("Balancer") runs on the config server. If one shard has too many chunks, it automatically migrates chunks to other shards to equalize load.</li>
+                        <li><strong>Enable Sharding:</strong> Must be enabled at the database level first via the shell.</li>
+                        <li><strong>Choose Shard Key:</strong> Select a specific field (e.g., <code>customer_id</code>) to partition data. This is the most critical decision.</li>
+                        <li><strong>Chunk Creation:</strong> MongoDB partitions data into 64MB logical blocks called "Chunks" based on ranges of the shard key.</li>
+                        <li><strong>Balancing:</strong> A background process called the "Balancer" runs on the config server. If one shard has significantly more chunks than others, it automatically migrates chunks to less burdened shards to ensure even load distribution.</li>
                     </ol>
 
                     <h2 class="section-header">5. Shard Key Strategies</h2>
                     <ul class="list-disc">
-                        <li><strong>Ranged Sharding:</strong> Divides data by ranges (Values 0-100, 101-200). Good for range queries. Bad for monotonic keys (timestamps) as writes concentrate on the last shard (Hotspot).</li>
-                        <li><strong>Hashed Sharding:</strong> Computes a hash of the key. Distributes data randomly and evenly. Eliminates write hotspots but makes range queries inefficient (Scatter-Gather).</li>
+                        <li><strong>Ranged Sharding:</strong> Divides data by continuous ranges (e.g., Values 0-100, 101-200). 
+                            <br><em>Pros:</em> Good for range queries ("Find users between ID 50 and 70"). 
+                            <br><em>Cons:</em> Risk of "write hotspots" if the key is monotonic (like timestamps), as all new inserts go to the last shard.</li>
+                        <li><strong>Hashed Sharding:</strong> Computes a hash of the key value.
+                            <br><em>Pros:</em> Distributes data randomly and evenly, eliminating write hotspots.
+                            <br><em>Cons:</em> Range queries become inefficient (Scatter-Gather) as sequential keys are scattered across all shards.</li>
                     </ul>
                 `
             },
@@ -893,119 +1237,125 @@ STORE counts INTO 'output_dir';
             {
                 id: "q18", unit: "Unit V", title: "18. Social Networks & Recommenders",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q18: Social Network Analysis & Recommender Systems</h1>
+                    <h1 class="section-title">Q18: Social Network Analysis & Recommender Systems</h1>
 
                     <h2 class="section-header">1. Social Network as a Graph</h2>
-                    <p class="content-text">Modeled as a Graph $G = (V, E)$ where Nodes ($V$) are users and Edges ($E$) are relationships (Friends/Follows).</p>
-                    <h3 class="sub-header">Key Properties (Centrality Measures)</h3>
+                    <p class="content-text">A social network is theoretically modeled as a Graph $G = (V, E)$ where <strong>Nodes ($V$)</strong> represent actors (users, organizations) and <strong>Edges ($E$)</strong> represent relationships (Friendships, Follows, Likes).</p>
+                    <h3 class="sub-header">Key Graph Properties (Centrality Measures)</h3>
                     <ul class="list-disc">
-                        <li><strong>Degree Centrality:</strong> Number of connections. Indicates popularity (Hubs).</li>
-                        <li><strong>Betweenness Centrality:</strong> How often a node lies on the shortest path between two others. Indicates "Bridges" or gatekeepers of information flow.</li>
+                        <li><strong>Degree Centrality:</strong> The number of direct connections. Indicates <strong>Popularity</strong> (Hubs).</li>
+                        <li><strong>Betweenness Centrality:</strong> How often a node lies on the shortest path between two others. Indicates <strong>Bridges</strong> or gatekeepers who control information flow between groups.</li>
                         <li><strong>Closeness Centrality:</strong> How fast information spreads from a node to the rest of the network.</li>
-                        <li><strong>Clustering Coefficient:</strong> Probability that two friends of a node are also friends with each other. High in social networks (Triangles/Cliques).</li>
+                        <li><strong>Clustering Coefficient:</strong> The probability that two friends of a node are also friends with each other. High clustering indicates tight-knit communities or <strong>Cliques</strong>.</li>
                     </ul>
 
-                    <h2 class="section-header">2. Mining Applications</h2>
+                    <h2 class="section-header">2. Social Network Mining Applications</h2>
                     <ul class="list-disc">
-                        <li><strong>Link Prediction:</strong> Predicting missing edges (e.g., "People You May Know"). Algorithms: Common Neighbors, Adamic-Adar.</li>
-                        <li><strong>Viral Marketing:</strong> Identifying "Influencers" (High centrality) to seed a campaign for max spread (Influence Maximization).</li>
-                        <li><strong>Community Detection:</strong> Finding distinct groups (Family vs Work friends).</li>
+                        <li><strong>Link Prediction:</strong> Predicting missing edges (e.g., Facebook's "People You May Know"). Uses algorithms like Common Neighbors or Adamic-Adar.</li>
+                        <li><strong>Viral Marketing (Influence Maximization):</strong> Identifying "Influencers" (High centrality nodes) to seed a message for maximum network spread.</li>
+                        <li><strong>Community Detection:</strong> Identifying distinct sub-graphs (Family vs Work friends) to target ads or content.</li>
+                        <li><strong>Fake Account Detection:</strong> Analyzing graph topology to find unnatural "star" patterns indicative of bot farms.</li>
                     </ul>
 
                     <h2 class="section-header">3. Recommender Systems</h2>
-                    <p class="content-text">Systems that filter information to predict user preference. Solves "Information Overload".</p>
-                    <h3 class="sub-header">Techniques</h3>
+                    <p class="content-text">Systems that filter information to predict user preference. They solve the problem of <strong>Information Overload</strong>.</p>
+                    <h3 class="sub-header">Main Techniques</h3>
                     <ul class="list-disc">
-                        <li><strong>Content-Based:</strong> Recommends items similar to those a user liked before based on features (Genre, Keywords). <em>"You watched a Sci-Fi movie, here is another Sci-Fi movie."</em></li>
-                        <li><strong>Collaborative Filtering (CF):</strong> Relies on user behavior/history.
-                            <ul class="list-circle ml-4">
-                                <li><em>User-Based:</em> "Users similar to you liked X."</li>
-                                <li><em>Item-Based:</em> "Users who bought A also bought B."</li>
+                        <li><strong>Content-Based Filtering:</strong> Recommends items similar to those a user liked before based on item features (Keywords, Genre, Actor). 
+                            <br><em>Logic: "You watched a Sci-Fi movie, here is another Sci-Fi movie."</em></li>
+                        <li><strong>Collaborative Filtering (CF):</strong> Relies on past user behavior and the behavior of similar users. No knowledge of item features is needed.
+                            <ul class="list-circle ml-4 mt-1 text-sm">
+                                <li><em>User-Based:</em> "Users similar to you liked X, so you might like X."</li>
+                                <li><em>Item-Based:</em> "Users who bought A also bought B, so I recommend B."</li>
                             </ul>
                         </li>
-                        <li><strong>Hybrid:</strong> Combines both (e.g., Netflix) to overcome limitations like the <strong>Cold Start Problem</strong> (New users have no history).</li>
+                        <li><strong>Hybrid Systems:</strong> Combines both methods (e.g., Netflix) to overcome limitations like the <strong>Cold Start Problem</strong> (System cannot recommend to a new user with no history).</li>
                     </ul>
                 `
             },
             {
                 id: "q19", unit: "Unit V", title: "19. Mining & Clustering in Social Networks",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q19: Mining Methods & Clustering in Graphs</h1>
+                    <h1 class="section-title">Q19: Mining Methods & Clustering in Graphs</h1>
 
                     <h2 class="section-header">1. Mining Methods</h2>
-                    <p class="content-text">Extracting patterns from graph structures.</p>
+                    <p class="content-text">Graph mining involves extracting useful patterns and insights from the structural data of networks.</p>
                     <ul class="list-disc">
-                        <li><strong>Community Detection:</strong> Algorithms like <strong>Girvan-Newman</strong> (Divisive - removes edges with high betweenness to isolate groups) or <strong>Louvain</strong> (Agglomerative - optimizes Modularity score).</li>
-                        <li><strong>Link Prediction:</strong> Using "Common Neighbors" or "Jaccard Coefficient" to predict future interactions.</li>
-                        <li><strong>Influence Analysis:</strong> PageRank algorithm to find authoritative nodes.</li>
+                        <li><strong>Community Detection:</strong> Finding groups where nodes are densely connected internally but sparsely connected externally.
+                            <ul class="ml-4 mt-1 text-sm">
+                                <li><em>Girvan-Newman:</em> A divisive algorithm. It progressively removes edges with high "Edge Betweenness" (bridges) to break the graph into communities.</li>
+                                <li><em>Louvain Method:</em> An agglomerative, greedy optimization method that maximizes the "Modularity" score. Fast and scalable.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Link Prediction:</strong> Using metrics like "Common Neighbors" or "Jaccard Coefficient" to predict the likelihood of a future association.</li>
+                        <li><strong>Influence Analysis:</strong> Using PageRank or HITS algorithms to find authoritative nodes.</li>
                     </ul>
 
                     <h2 class="section-header">2. Clustering in Graphs</h2>
-                    <p class="content-text">Grouping nodes such that nodes within a group are densely connected.</p>
+                    <p class="content-text">Clustering aims to group nodes such that nodes within a group are similar (structurally or by attribute).</p>
                     
-                    <h3 class="sub-header">Methods</h3>
+                    <h3 class="sub-header">Clustering Methods</h3>
                     <ul class="list-disc">
-                        <li><strong>Hierarchical Clustering:</strong>
-                            <ul class="list-circle ml-4">
-                                <li><em>Agglomerative (Bottom-Up):</em> Start with N clusters, merge closest.</li>
-                                <li><em>Divisive (Top-Down):</em> Start with 1 cluster, split recursively.</li>
-                                <li>Visualized using a <strong>Dendrogram</strong>.</li>
+                        <li><strong>Hierarchical Clustering:</strong> Creates a tree of clusters (Dendrogram).
+                            <ul class="ml-4 mt-1 text-sm">
+                                <li><em>Agglomerative (Bottom-Up):</em> Start with N clusters, merge closest pairs iteratively.</li>
+                                <li><em>Divisive (Top-Down):</em> Start with 1 giant cluster, split recursively.</li>
                             </ul>
                         </li>
-                        <li><strong>Partitional Clustering:</strong> <strong>K-Means</strong> (requires embedding graph nodes into vector space first) or <strong>Spectral Clustering</strong> (uses Eigenvalues of Laplacian matrix).</li>
-                        <li><strong>Density-Based (DBSCAN):</strong> Finds core groups and identifies outliers (noise/isolated users). Good for non-spherical shapes.</li>
+                        <li><strong>Partitional Clustering:</strong> Divides graph into K clusters. <strong>K-Means</strong> is common but requires embedding graph nodes into a vector space first (Node2Vec). <strong>Spectral Clustering</strong> uses the Eigenvalues of the Graph Laplacian matrix to cut the graph.</li>
+                        <li><strong>Density-Based (DBSCAN):</strong> Finds core groups of nodes and identifies outliers (noise/isolated users). Excellent for finding cliques of arbitrary shapes.</li>
                     </ul>
 
-                    <h2 class="section-header">3. Challenges</h2>
-                    <p class="content-text"><strong>Scalability</strong> (Graphs have billions of edges), <strong>Dynamic nature</strong> (Friends change instantly), and <strong>Overlapping Communities</strong> (A user belongs to Family, Work, and Hobby groups simultaneously).</p>
+                    <h2 class="section-header">3. Challenges in Graph Mining</h2>
+                    <p class="content-text"><strong>Scalability</strong> (Graphs have billions of edges), <strong>Dynamic nature</strong> (Social graphs change every second), and <strong>Overlapping Communities</strong> (Real users belong to multiple groups simultaneously, requiring "Soft" clustering).</p>
                 `
             },
             {
                 id: "q20", unit: "Unit V", title: "20. ETL Processing",
                 content: `
-                    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Q20: ETL Processing in Big Data</h1>
+                    <h1 class="section-title">Q20: ETL Processing in Big Data</h1>
 
                     <h2 class="section-header">1. Introduction</h2>
-                    <p class="content-text">ETL (Extract, Transform, Load) is the pipeline process of moving data from sources to a central warehouse for analysis. In Big Data, this often shifts to <strong>ELT</strong>.</p>
+                    <p class="content-text">ETL (Extract, Transform, Load) is the fundamental data engineering pipeline for moving data from source systems to a centralized repository (Data Warehouse/Lake) for analysis. In the Big Data era, this often shifts to <strong>ELT</strong> to leverage distributed computing power.</p>
 
                     <h2 class="section-header">2. The Phases</h2>
                     <h3 class="sub-header">A. EXTRACT (Ingestion)</h3>
-                    <p class="content-text">Reading data from heterogeneous sources (RDBMS, Logs, IoT).</p>
+                    <p class="content-text">Reading data from heterogeneous sources (RDBMS, Logs, IoT, APIs).</p>
                     <ul class="list-disc">
-                        <li><strong>Tools:</strong> <em>Apache Sqoop</em> (RDBMS), <em>Flume</em> (Logs), <em>Kafka</em> (Real-time streams).</li>
-                        <li><strong>Challenge:</strong> minimizing impact on source systems.</li>
+                        <li><strong>Tools:</strong> <em>Apache Sqoop</em> (Bulk load from RDBMS), <em>Flume</em> (Streaming logs), <em>Kafka</em> (Real-time event streams).</li>
+                        <li><strong>Challenge:</strong> Minimizing performance impact on source systems and handling different protocols.</li>
                     </ul>
 
                     <h3 class="sub-header">B. TRANSFORM (Processing)</h3>
-                    <p class="content-text">Cleaning, validating, and aggregating data.</p>
+                    <p class="content-text">The "heart" of the process. Converting raw data into a clean, analysis-ready format.</p>
                     <ul class="list-disc">
-                        <li><strong>Operations:</strong> Deduplication, Format conversion (Date strings), Enrichment (Joins), Anonymization.</li>
-                        <li><strong>Tools:</strong> <em>Apache Spark</em> (Fast, In-memory), <em>Hive/Pig</em> (Batch).</li>
+                        <li><strong>Operations:</strong> Cleaning (Removing duplicates/nulls), Formatting (Date strings), Enrichment (Joining with other tables), Anonymization (Masking PII).</li>
+                        <li><strong>Tools:</strong> <em>Apache Spark</em> (Fast, In-memory DAGs), <em>Hive/Pig</em> (Batch SQL scripts).</li>
                     </ul>
 
                     <h3 class="sub-header">C. LOAD (Storage)</h3>
-                    <p class="content-text">Writing processed data to the target.</p>
+                    <p class="content-text">Writing the processed data into the target system.</p>
                     <ul class="list-disc">
-                        <li><strong>Targets:</strong> Data Warehouse (Snowflake, Redshift), Data Lake (S3, HDFS), NoSQL (HBase).</li>
-                        <li><strong>Strategy:</strong> Full Load vs Incremental Load (Delta only).</li>
+                        <li><strong>Targets:</strong> Data Warehouse (Snowflake, Redshift) for reporting, Data Lake (S3, HDFS) for archival, NoSQL (HBase) for low-latency apps.</li>
+                        <li><strong>Strategy:</strong> Full Load (Overwrite) vs Incremental Load (Append deltas only).</li>
                     </ul>
 
                     <h2 class="section-header">3. ETL vs. ELT</h2>
-                    <p class="content-text">Traditionally <strong>ETL</strong> transformed data on a separate server before loading to save DB space. In Big Data, <strong>ELT</strong> (Extract-Load-Transform) is preferred: Load raw data into the Data Lake (HDFS/S3) first, then use the massive parallel power of the cluster (Spark/Hadoop) to transform it on demand. This preserves raw data for future use cases (Schema-on-Read).</p>
+                    <p class="content-text">Traditionally <strong>ETL</strong> transformed data on a separate server <em>before</em> loading to save database space. <br>In Big Data, <strong>ELT (Extract-Load-Transform)</strong> is preferred: Load raw data into the Data Lake (HDFS/S3) first, then use the massive parallel power of the cluster (Spark/Hadoop) to transform it on demand. This preserves the raw data for future, undefined use cases (Schema-on-Read).</p>
 
                     <h2 class="section-header">4. Workflow Diagram</h2>
                     <div class="ascii-art">
       [Data Sources]
            |
-       (Extract) --> [Sqoop/Kafka]
+       (Extract) --> [Sqoop/Kafka/Flume]
            |
-      [Data Lake] (Raw Storage - HDFS/S3)  <-- ELT Shift
+      [Data Lake] (Raw Storage - HDFS/S3)  <-- ELT Shift happens here
            |
-       (Transform) --> [Spark Engine]
+       (Transform) --> [Spark / MapReduce Engine]
            |
       [Data Warehouse] (Structured Tables)
            |
-       [BI Tools]
+       [BI Tools] (Tableau/PowerBI)
                     </div>
                 `
             }
@@ -1023,11 +1373,11 @@ STORE counts INTO 'output_dir';
         Object.keys(groupedQuestions).forEach(unit => {
             const unitDiv = document.createElement('div');
             unitDiv.className = "mb-6";
-            unitDiv.innerHTML = `<h3 class="px-6 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">${unit}</h3>`;
+            unitDiv.innerHTML = `<h3 class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 mb-2">${unit}</h3>`;
             
             groupedQuestions[unit].forEach(q => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800 transition-colors nav-item border-l-4 border-transparent";
+                btn.className = "w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800 transition-colors nav-item border-l-4 border-transparent focus:outline-none";
                 btn.innerText = q.title;
                 btn.onclick = () => loadQuestion(q.id, btn);
                 unitDiv.appendChild(btn);
@@ -1040,30 +1390,45 @@ STORE counts INTO 'output_dir';
             const contentArea = document.getElementById('contentArea');
             contentArea.innerHTML = question.content;
 
+            // Update active state in sidebar
             document.querySelectorAll('.nav-item').forEach(b => {
-                b.classList.remove('bg-blue-100', 'text-blue-900', 'border-blue-900');
+                b.classList.remove('bg-blue-100', 'text-blue-900', 'border-blue-900', 'font-medium');
                 b.classList.add('border-transparent');
             });
             if(btnElement) {
-                btnElement.classList.add('bg-blue-100', 'text-blue-900', 'border-blue-900');
+                btnElement.classList.add('bg-blue-100', 'text-blue-900', 'border-blue-900', 'font-medium');
                 btnElement.classList.remove('border-transparent');
             }
 
-            if(window.innerWidth < 768) closeSidebar();
+            // Scroll to top
             document.getElementById('mainScroll').scrollTop = 0;
+            
+            // Close mobile menu
+            if(window.innerWidth < 768) closeSidebar();
         }
 
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closeBtn');
 
-        function openSidebar() { sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); }
-        function closeSidebar() { sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); }
+        function openSidebar() { 
+            sidebar.classList.remove('-translate-x-full'); 
+            overlay.classList.remove('hidden'); 
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+        }
+        
+        function closeSidebar() { 
+            sidebar.classList.add('-translate-x-full'); 
+            overlay.classList.add('hidden'); 
+            document.body.style.overflow = ''; 
+        }
 
         menuBtn.onclick = openSidebar;
+        closeBtn.onclick = closeSidebar;
         overlay.onclick = closeSidebar;
 
-        // Init
+        // Initialize with first question
         const firstBtn = document.querySelectorAll('.nav-item')[0];
         if(firstBtn) loadQuestion('q1', firstBtn);
 
