@@ -7,63 +7,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Mobile-first optimizations */
-        body { font-family: system-ui, -apple-system, sans-serif; }
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: #000000; color: #e5e5e5; }
         
         /* Scrollbar styling */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #f3f4f6; }
-        ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #333333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555555; }
 
         /* ASCII Art Container */
         .ascii-art {
             font-family: 'Courier New', Courier, monospace;
             white-space: pre;
             overflow-x: auto;
-            background-color: #1f2937; /* Dark gray */
-            color: #e5e7eb; /* Light gray text */
+            background-color: #000000; /* True Black */
+            color: #4ade80; /* Terminal Green for contrast */
             padding: 1rem;
             border-radius: 0.5rem;
             font-size: 0.75rem;
             line-height: 1.25;
-            border: 1px solid #374151;
+            border: 1px solid #333333;
             margin: 1.5rem 0;
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
         }
 
         /* Content Typography */
         .section-title { 
-            color: #1e3a8a; 
+            color: #60a5fa; /* Blue-400 */
             font-size: 1.75rem; 
             font-weight: 800; 
             margin-bottom: 1.5rem; 
             line-height: 1.2;
         }
         .section-header { 
-            color: #1e40af; 
+            color: #93c5fd; /* Blue-300 */
             font-size: 1.4rem; 
             font-weight: 700; 
             margin-top: 2.5rem; 
             margin-bottom: 1rem; 
-            border-bottom: 2px solid #e5e7eb; 
+            border-bottom: 2px solid #333333; 
             padding-bottom: 0.5rem; 
         }
         .sub-header { 
-            color: #374151; 
+            color: #e5e7eb; /* Gray-200 */
             font-size: 1.15rem; 
             font-weight: 600; 
             margin-top: 1.5rem; 
             margin-bottom: 0.5rem; 
         }
         .content-text { 
-            color: #4b5563; 
+            color: #d1d5db; /* Gray-300 */
             line-height: 1.75; 
             margin-bottom: 1rem; 
             font-size: 1rem; 
         }
         
         /* Lists */
-        ul, ol { margin-left: 1.25rem; margin-bottom: 1.25rem; color: #4b5563; }
+        ul, ol { margin-left: 1.25rem; margin-bottom: 1.25rem; color: #d1d5db; }
         li { margin-bottom: 0.5rem; padding-left: 0.25rem; }
         
         /* Tables - Mobile Responsive Wrapper */
@@ -71,57 +70,61 @@
             overflow-x: auto;
             margin: 1.5rem 0;
             border-radius: 0.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid #333;
         }
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        th, td { border: 1px solid #d1d5db; padding: 0.875rem; text-align: left; }
-        th { background-color: #f3f4f6; font-weight: 700; color: #111827; font-size: 0.9rem; }
-        td { font-size: 0.9rem; vertical-align: top; }
-        tr:nth-child(even) { background-color: #f9fafb; }
+        th, td { border: 1px solid #333333; padding: 0.875rem; text-align: left; }
+        th { background-color: #111111; font-weight: 700; color: #60a5fa; font-size: 0.9rem; }
+        td { font-size: 0.9rem; vertical-align: top; color: #d1d5db; }
+        tr:nth-child(even) { background-color: #0a0a0a; }
 
         /* Code Blocks */
         code { 
-            background-color: #f3f4f6; 
+            background-color: #111111; 
             padding: 0.2rem 0.4rem; 
             border-radius: 0.25rem; 
             font-family: monospace; 
-            color: #dc2626; 
+            color: #f87171; /* Red-400 */
+            border: 1px solid #333;
             font-size: 0.9em; 
         }
         
         /* Highlight Box */
         .highlight-box { 
-            background-color: #eff6ff; 
+            background-color: #050505; 
             border-left: 4px solid #3b82f6; 
             padding: 1.25rem; 
             margin: 1.5rem 0; 
             border-radius: 0 0.5rem 0.5rem 0; 
+            border-top: 1px solid #222;
+            border-right: 1px solid #222;
+            border-bottom: 1px solid #222;
         }
     </style>
 </head>
-<body class="bg-gray-50 h-screen flex flex-col md:flex-row overflow-hidden text-gray-800">
+<body class="bg-black h-screen flex flex-col md:flex-row overflow-hidden text-gray-200">
 
     <!-- Mobile Header -->
-    <div class="md:hidden bg-blue-900 text-white p-4 flex justify-between items-center z-30 shadow-lg">
+    <div class="md:hidden bg-black border-b border-gray-800 text-white p-4 flex justify-between items-center z-30">
         <div>
-            <h1 class="font-bold text-lg leading-tight">CS-702 Exam Prep</h1>
-            <p class="text-xs text-blue-200">Big Data Analytics</p>
+            <h1 class="font-bold text-lg leading-tight text-blue-400">CS-702 Exam Prep</h1>
+            <p class="text-xs text-gray-400">Big Data Analytics</p>
         </div>
-        <button id="menuBtn" class="focus:outline-none p-1 rounded hover:bg-blue-800 transition-colors">
+        <button id="menuBtn" class="focus:outline-none p-1 rounded hover:bg-gray-900 text-blue-400 transition-colors">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
     </div>
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="transform -translate-x-full md:translate-x-0 transition-transform duration-300 absolute md:relative z-20 w-full md:w-80 bg-white shadow-xl h-full flex flex-col border-r border-gray-200">
-        <div class="p-6 bg-blue-900 text-white hidden md:block flex-shrink-0">
-            <h1 class="text-2xl font-bold tracking-wide">CS-702</h1>
-            <p class="text-blue-200 text-sm mt-1 font-medium">Detailed Study Material</p>
+    <aside id="sidebar" class="transform -translate-x-full md:translate-x-0 transition-transform duration-300 absolute md:relative z-20 w-full md:w-80 bg-black shadow-xl h-full flex flex-col border-r border-gray-800">
+        <div class="p-6 border-b border-gray-900 hidden md:block flex-shrink-0">
+            <h1 class="text-2xl font-bold tracking-wide text-blue-500">CS-702</h1>
+            <p class="text-gray-400 text-sm mt-1 font-medium">Detailed Study Material</p>
         </div>
         
-        <div class="md:hidden p-4 bg-gray-100 border-b flex justify-between items-center">
-            <span class="font-bold text-gray-700">Navigate Units</span>
-            <button id="closeBtn" class="text-gray-500 hover:text-gray-800">
+        <div class="md:hidden p-4 bg-black border-b border-gray-800 flex justify-between items-center">
+            <span class="font-bold text-gray-300">Navigate Units</span>
+            <button id="closeBtn" class="text-gray-500 hover:text-white">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
@@ -132,15 +135,15 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="flex-1 h-full overflow-y-auto relative scroll-smooth bg-white w-full" id="mainScroll">
+    <main class="flex-1 h-full overflow-y-auto relative scroll-smooth bg-black w-full" id="mainScroll">
         <div class="max-w-4xl mx-auto p-5 md:p-12 pb-20">
             <div id="contentArea">
                 <!-- Intro State -->
                 <div class="flex flex-col items-center justify-center h-64 mt-20 text-center">
-                    <div class="bg-blue-100 p-4 rounded-full mb-4">
-                        <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <div class="bg-gray-900 p-4 rounded-full mb-4 border border-gray-800">
+                        <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-800">Welcome to CS-702 Prep</h2>
+                    <h2 class="text-3xl font-bold text-gray-200">Welcome to CS-702 Prep</h2>
                     <p class="text-gray-500 mt-3 max-w-md">Select a question from the sidebar to view detailed notes, diagrams, and explanations.</p>
                 </div>
             </div>
@@ -148,7 +151,7 @@
     </main>
 
     <!-- Overlay for mobile -->
-    <div id="overlay" class="fixed inset-0 bg-black opacity-50 z-10 hidden md:hidden backdrop-blur-sm"></div>
+    <div id="overlay" class="fixed inset-0 bg-black opacity-80 z-10 hidden md:hidden backdrop-blur-sm"></div>
 
     <script>
         // Comprehensive Data Store
@@ -165,34 +168,34 @@
                     <h2 class="section-header">2. The 6 V's of Big Data</h2>
                     <p class="content-text">The definition of Big Data is articulated through its dimensions, commonly known as the V's. You must explain all six in an exam:</p>
                     <div class="space-y-4">
-                        <div class="border-l-4 border-blue-500 pl-4 py-1">
-                            <h3 class="font-bold text-lg">1. Volume (The Scale)</h3>
-                            <p class="text-gray-700">Refers to the sheer magnitude of data generated. We have moved from megabytes and gigabytes to petabytes (PB) and zettabytes (ZB). This massive scale requires distributed storage systems like HDFS rather than traditional hard drives.</p>
+                        <div class="border-l-4 border-blue-500 pl-4 py-1 bg-gray-900 bg-opacity-30">
+                            <h3 class="font-bold text-lg text-blue-400">1. Volume (The Scale)</h3>
+                            <p class="text-gray-300">Refers to the sheer magnitude of data generated. We have moved from megabytes and gigabytes to petabytes (PB) and zettabytes (ZB). This massive scale requires distributed storage systems like HDFS rather than traditional hard drives.</p>
                             <p class="text-sm text-gray-500 italic mt-1">Example: A modern jet engine generates over 1 terabyte of sensor data per flight. A single flight is massive; multiply by thousands daily.</p>
                         </div>
-                        <div class="border-l-4 border-green-500 pl-4 py-1">
-                            <h3 class="font-bold text-lg">2. Velocity (The Speed)</h3>
-                            <p class="text-gray-700">The speed at which data is generated, accumulated, and processed. Data flows into organizations at unprecedented speeds and must be dealt with in a timely manner (often real-time) to maximize utility.</p>
+                        <div class="border-l-4 border-green-500 pl-4 py-1 bg-gray-900 bg-opacity-30">
+                            <h3 class="font-bold text-lg text-green-400">2. Velocity (The Speed)</h3>
+                            <p class="text-gray-300">The speed at which data is generated, accumulated, and processed. Data flows into organizations at unprecedented speeds and must be dealt with in a timely manner (often real-time) to maximize utility.</p>
                             <p class="text-sm text-gray-500 italic mt-1">Example: Stock market trading algorithms process millions of buy/sell orders in microseconds to execute high-frequency trades.</p>
                         </div>
-                        <div class="border-l-4 border-yellow-500 pl-4 py-1">
-                            <h3 class="font-bold text-lg">3. Variety (The Diversity)</h3>
-                            <p class="text-gray-700">The different forms of data. Traditional data was structured (tables, rows, columns), but Big Data is predominantly unstructured or semi-structured, including text, audio, video, geospatial data, and XML/JSON.</p>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-1 bg-gray-900 bg-opacity-30">
+                            <h3 class="font-bold text-lg text-yellow-400">3. Variety (The Diversity)</h3>
+                            <p class="text-gray-300">The different forms of data. Traditional data was structured (tables, rows, columns), but Big Data is predominantly unstructured or semi-structured, including text, audio, video, geospatial data, and XML/JSON.</p>
                             <p class="text-sm text-gray-500 italic mt-1">Example: A healthcare patient record now includes structured age/weight data, semi-structured lab reports, and unstructured MRI images.</p>
                         </div>
-                        <div class="border-l-4 border-red-500 pl-4 py-1">
-                            <h3 class="font-bold text-lg">4. Veracity (The Uncertainty)</h3>
-                            <p class="text-gray-700">Refers to the quality, trustworthiness, and accuracy of the data. Because Big Data comes from diverse sources, it often contains noise, abnormalities, or biases. If data is not reliable, the analysis will be flawed.</p>
+                        <div class="border-l-4 border-red-500 pl-4 py-1 bg-gray-900 bg-opacity-30">
+                            <h3 class="font-bold text-lg text-red-400">4. Veracity (The Uncertainty)</h3>
+                            <p class="text-gray-300">Refers to the quality, trustworthiness, and accuracy of the data. Because Big Data comes from diverse sources, it often contains noise, abnormalities, or biases. If data is not reliable, the analysis will be flawed.</p>
                             <p class="text-sm text-gray-500 italic mt-1">Example: Social media sentiment analysis can be skewed by bots, sarcasm, or fake accounts.</p>
                         </div>
-                        <div class="border-l-4 border-purple-500 pl-4 py-1">
-                            <h3 class="font-bold text-lg">5. Value (The Worth)</h3>
-                            <p class="text-gray-700">The most important V. It refers to the ability to transform tsunami-like data into useful business insights. Having data is useless unless it can be turned into profit, social good, or operational efficiency.</p>
+                        <div class="border-l-4 border-purple-500 pl-4 py-1 bg-gray-900 bg-opacity-30">
+                            <h3 class="font-bold text-lg text-purple-400">5. Value (The Worth)</h3>
+                            <p class="text-gray-300">The most important V. It refers to the ability to transform tsunami-like data into useful business insights. Having data is useless unless it can be turned into profit, social good, or operational efficiency.</p>
                             <p class="text-sm text-gray-500 italic mt-1">Example: Netflix analyzing user viewing history (Volume) to recommend new shows, directly increasing user retention.</p>
                         </div>
-                        <div class="border-l-4 border-gray-500 pl-4 py-1">
-                            <h3 class="font-bold text-lg">6. Variability (The Change)</h3>
-                            <p class="text-gray-700">Refers to the inconsistency in the data flow or the changing meaning of data over time. Unlike Velocity (speed), Variability focuses on the peaks, troughs, and context changes in data streams.</p>
+                        <div class="border-l-4 border-gray-500 pl-4 py-1 bg-gray-900 bg-opacity-30">
+                            <h3 class="font-bold text-lg text-gray-400">6. Variability (The Change)</h3>
+                            <p class="text-gray-300">Refers to the inconsistency in the data flow or the changing meaning of data over time. Unlike Velocity (speed), Variability focuses on the peaks, troughs, and context changes in data streams.</p>
                             <p class="text-sm text-gray-500 italic mt-1">Example: A trending keyword on Twitter might mean "virus" (medical) one day and "computer bug" (tech) the next.</p>
                         </div>
                     </div>
@@ -406,17 +409,17 @@
 
                     <h3 class="sub-header">Real-World Applications</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div class="bg-blue-50 p-3 rounded">
-                            <strong>Retail (Demand Forecasting):</strong> Walmart predicts exactly how many units of a specific toy to stock in a specific store before holidays to prevent stockouts.
+                        <div class="bg-gray-900 border border-gray-800 p-3 rounded">
+                            <strong class="text-blue-400">Retail (Demand Forecasting):</strong> Walmart predicts exactly how many units of a specific toy to stock in a specific store before holidays to prevent stockouts.
                         </div>
-                        <div class="bg-blue-50 p-3 rounded">
-                            <strong>Healthcare (Risk Prediction):</strong> Algorithms analyze patient vitals to predict the likelihood of cardiac arrest or sepsis hours before clinical signs appear.
+                        <div class="bg-gray-900 border border-gray-800 p-3 rounded">
+                            <strong class="text-blue-400">Healthcare (Risk Prediction):</strong> Algorithms analyze patient vitals to predict the likelihood of cardiac arrest or sepsis hours before clinical signs appear.
                         </div>
-                        <div class="bg-blue-50 p-3 rounded">
-                            <strong>Finance (Credit Scoring):</strong> Banks predict the probability of a loan applicant defaulting based on history and demographics.
+                        <div class="bg-gray-900 border border-gray-800 p-3 rounded">
+                            <strong class="text-blue-400">Finance (Credit Scoring):</strong> Banks predict the probability of a loan applicant defaulting based on history and demographics.
                         </div>
-                        <div class="bg-blue-50 p-3 rounded">
-                            <strong>Manufacturing (Predictive Maintenance):</strong> Sensors predict when a machine part will fail, allowing maintenance during scheduled downtime instead of emergency breakdowns.
+                        <div class="bg-gray-900 border border-gray-800 p-3 rounded">
+                            <strong class="text-blue-400">Manufacturing (Predictive Maintenance):</strong> Sensors predict when a machine part will fail, allowing maintenance during scheduled downtime instead of emergency breakdowns.
                         </div>
                     </div>
                 `
@@ -549,28 +552,28 @@
 
                     <h2 class="section-header">4. Detailed Component Roles & Use Cases</h2>
                     <div class="space-y-4">
-                        <div class="bg-white border rounded p-3 shadow-sm">
-                            <strong>Apache Hive:</strong> A Data Warehouse infrastructure. Projects a SQL-like structure onto data in HDFS. Used by analysts for reporting/summarization.
+                        <div class="bg-gray-900 border border-gray-800 rounded p-3 shadow-sm">
+                            <strong class="text-blue-400">Apache Hive:</strong> A Data Warehouse infrastructure. Projects a SQL-like structure onto data in HDFS. Used by analysts for reporting/summarization.
                             <br><em>Use-case: Generating a daily sales summary report using SQL.</em>
                         </div>
-                        <div class="bg-white border rounded p-3 shadow-sm">
-                            <strong>Apache Pig:</strong> A high-level platform for creating MapReduce programs using a scripting language (Pig Latin). Good for ETL.
+                        <div class="bg-gray-900 border border-gray-800 rounded p-3 shadow-sm">
+                            <strong class="text-blue-400">Apache Pig:</strong> A high-level platform for creating MapReduce programs using a scripting language (Pig Latin). Good for ETL.
                             <br><em>Use-case: Cleaning and reshaping messy unstructured log files.</em>
                         </div>
-                        <div class="bg-white border rounded p-3 shadow-sm">
-                            <strong>Apache Sqoop:</strong> "SQL-to-Hadoop". Efficiently transfers bulk data between Hadoop and structured datastores (RDBMS like Oracle/MySQL).
+                        <div class="bg-gray-900 border border-gray-800 rounded p-3 shadow-sm">
+                            <strong class="text-blue-400">Apache Sqoop:</strong> "SQL-to-Hadoop". Efficiently transfers bulk data between Hadoop and structured datastores (RDBMS like Oracle/MySQL).
                             <br><em>Use-case: Importing customer tables from Oracle to HDFS for analysis.</em>
                         </div>
-                        <div class="bg-white border rounded p-3 shadow-sm">
-                            <strong>Apache Flume:</strong> Distributed service for collecting, aggregating, and moving large amounts of streaming data (logs) into HDFS.
+                        <div class="bg-gray-900 border border-gray-800 rounded p-3 shadow-sm">
+                            <strong class="text-blue-400">Apache Flume:</strong> Distributed service for collecting, aggregating, and moving large amounts of streaming data (logs) into HDFS.
                             <br><em>Use-case: Streaming web server logs directly into HDFS in real-time.</em>
                         </div>
-                        <div class="bg-white border rounded p-3 shadow-sm">
-                            <strong>Apache Oozie:</strong> A workflow scheduler system to manage Hadoop jobs. Defines dependency DAGs.
+                        <div class="bg-gray-900 border border-gray-800 rounded p-3 shadow-sm">
+                            <strong class="text-blue-400">Apache Oozie:</strong> A workflow scheduler system to manage Hadoop jobs. Defines dependency DAGs.
                             <br><em>Use-case: Automating a pipeline: 1. Run Sqoop -> 2. Run Hive Query -> 3. Email Report.</em>
                         </div>
-                        <div class="bg-white border rounded p-3 shadow-sm">
-                            <strong>Apache Zookeeper:</strong> A centralized service for maintaining configuration information, naming, and providing distributed synchronization.
+                        <div class="bg-gray-900 border border-gray-800 rounded p-3 shadow-sm">
+                            <strong class="text-blue-400">Apache Zookeeper:</strong> A centralized service for maintaining configuration information, naming, and providing distributed synchronization.
                             <br><em>Use-case: Tracking which nodes are "alive" (Cluster coordination).</em>
                         </div>
                     </div>
@@ -1373,11 +1376,11 @@ STORE D INTO '/user/output_dir';
         Object.keys(groupedQuestions).forEach(unit => {
             const unitDiv = document.createElement('div');
             unitDiv.className = "mb-6";
-            unitDiv.innerHTML = `<h3 class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 mb-2">${unit}</h3>`;
+            unitDiv.innerHTML = `<h3 class="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-800 mb-2">${unit}</h3>`;
             
             groupedQuestions[unit].forEach(q => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800 transition-colors nav-item border-l-4 border-transparent focus:outline-none";
+                btn.className = "w-full text-left px-4 py-3 text-sm text-gray-300 hover:bg-gray-900 hover:text-blue-400 transition-colors nav-item border-l-4 border-transparent focus:outline-none";
                 btn.innerText = q.title;
                 btn.onclick = () => loadQuestion(q.id, btn);
                 unitDiv.appendChild(btn);
@@ -1392,11 +1395,11 @@ STORE D INTO '/user/output_dir';
 
             // Update active state in sidebar
             document.querySelectorAll('.nav-item').forEach(b => {
-                b.classList.remove('bg-blue-100', 'text-blue-900', 'border-blue-900', 'font-medium');
+                b.classList.remove('bg-gray-900', 'text-blue-400', 'border-blue-500', 'font-medium');
                 b.classList.add('border-transparent');
             });
             if(btnElement) {
-                btnElement.classList.add('bg-blue-100', 'text-blue-900', 'border-blue-900', 'font-medium');
+                btnElement.classList.add('bg-gray-900', 'text-blue-400', 'border-blue-500', 'font-medium');
                 btnElement.classList.remove('border-transparent');
             }
 
